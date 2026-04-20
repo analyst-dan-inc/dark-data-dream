@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactElement } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -16,7 +16,7 @@ type Skill = {
   id: string;
   name: string;
   description: string;
-  Illustration: () => JSX.Element;
+  Illustration: () => ReactElement;
 };
 
 const SKILLS: Skill[] = [
