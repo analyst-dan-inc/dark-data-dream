@@ -191,12 +191,12 @@ export function SkillsCarousel() {
           {SKILLS.map((skill, i) => (
             <div
               key={skill.id}
-              className="relative min-w-0 shrink-0 grow-0 basis-[88%] px-2 sm:basis-[78%] sm:px-3 md:basis-[70%]"
+              className="relative min-w-0 shrink-0 grow-0 basis-[82%] px-2 sm:basis-[58%] sm:px-3 md:basis-[46%] lg:basis-[42%]"
               role="group"
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${SKILLS.length}`}
             >
-              <div className="aspect-[5/6] sm:aspect-[16/11]">
+              <div className="aspect-[3/5]">
                 <SkillCard skill={skill} isActive={i === selected} />
               </div>
             </div>
