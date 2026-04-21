@@ -69,7 +69,7 @@ function Index() {
           {/* soft blurred bridge into the carousel on desktop */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 -right-40 hidden w-80 blur-3xl lg:block"
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-80 translate-x-1/2 blur-3xl lg:block"
             style={{
               background:
                 "radial-gradient(ellipse at center, oklch(0.82 0.13 200 / 14%), oklch(0.7 0.18 285 / 8%) 40%, transparent 75%)",
