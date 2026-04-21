@@ -63,20 +63,16 @@ function Index() {
       </header>
 
       {/* HERO */}
-      <section className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 pb-16 pt-6 sm:px-10 lg:grid-cols-[1fr_1.15fr] lg:gap-24 lg:pl-20 lg:pr-10 lg:pt-12 xl:pl-28">
+      <section className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 pb-16 pt-6 sm:px-10 lg:grid-cols-[1fr_1.15fr] lg:gap-20 lg:px-16 lg:pt-12 xl:px-24">
         {/* Left — intro */}
-        <div className="relative flex flex-col justify-center lg:pr-6">
-          {/* soft bridge fade into the carousel on desktop */}
+        <div className="relative flex flex-col justify-center">
+          {/* soft blurred bridge into the carousel on desktop */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 -right-24 hidden w-48 lg:block"
+            className="pointer-events-none absolute inset-y-0 -right-40 hidden w-80 blur-3xl lg:block"
             style={{
               background:
-                "radial-gradient(ellipse at left center, oklch(0.82 0.13 200 / 10%), transparent 70%)",
-              maskImage:
-                "linear-gradient(to right, black, transparent)",
-              WebkitMaskImage:
-                "linear-gradient(to right, black, transparent)",
+                "radial-gradient(ellipse at center, oklch(0.82 0.13 200 / 14%), oklch(0.7 0.18 285 / 8%) 40%, transparent 75%)",
             }}
           />
           <div className="animate-fade-up">
