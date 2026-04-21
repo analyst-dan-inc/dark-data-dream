@@ -1,54 +1,9 @@
-import { useCallback, useEffect, useRef, useState, type ReactElement } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import {
-  DataVizIllustration,
-  ETLIllustration,
-  ProgrammingIllustration,
-  ReportingIllustration,
-} from "./SkillIllustrations";
-
-/**
- * Skills data — edit name / description here to customize.
- */
-type Skill = {
-  id: string;
-  name: string;
-  description: string;
-  Illustration: () => ReactElement;
-};
-
-const SKILLS: Skill[] = [
-  {
-    id: "dataviz",
-    name: "Data Visualization",
-    description:
-      "Translating complex datasets into clear, decision-ready visuals — dashboards, charts and narrative reports that make patterns obvious at a glance.",
-    Illustration: DataVizIllustration,
-  },
-  {
-    id: "reporting",
-    name: "Reporting",
-    description:
-      "Building automated, stakeholder-tuned reports with the right KPIs, drill-downs and commentary to turn raw numbers into weekly business signal.",
-    Illustration: ReportingIllustration,
-  },
-  {
-    id: "etl",
-    name: "ETL",
-    description:
-      "Designing reliable extract-transform-load pipelines that consolidate sources, enforce quality and deliver clean, modeled data downstream.",
-    Illustration: ETLIllustration,
-  },
-  {
-    id: "programming",
-    name: "Data Programming",
-    description:
-      "Hands-on with NoSQL, Python, Excel and Power BI — querying, modeling and scripting end-to-end analytical workflows.",
-    Illustration: ProgrammingIllustration,
-  },
-];
+import { SKILLS, type Skill } from "./skills-data";
 
 function SkillCard({
   skill,
@@ -121,7 +76,6 @@ function SkillCard({
             <div className="relative h-full w-full p-4">
               <Illustration />
             </div>
-            {/* shine */}
             <div
               className="pointer-events-none absolute inset-x-0 top-0 h-px"
               style={{
@@ -143,6 +97,22 @@ function SkillCard({
             <p className="text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
               {skill.description}
             </p>
+
+            <div className="mt-auto pt-4">
+              <Link
+                to="/skills/$slug"
+                params={{ slug: skill.slug }}
+                tabIndex={isActive ? 0 : -1}
+                aria-hidden={!isActive}
+                className={cn(
+                  "group/cta inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-foreground/90 backdrop-blur transition hover:border-accent-cyan/50 hover:bg-white/10 hover:text-foreground",
+                  !isActive && "pointer-events-none",
+                )}
+              >
+                Explore skill
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
