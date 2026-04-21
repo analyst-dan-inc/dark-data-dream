@@ -101,12 +101,6 @@ function Index() {
               Get in touch
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </a>
-            <a
-              href="#skills"
-              className="glass-panel inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-foreground/90 transition hover:text-foreground"
-            >
-              View skills
-            </a>
           </div>
 
           {/* metrics row */}
