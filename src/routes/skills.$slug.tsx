@@ -60,10 +60,10 @@ function SkillDetail() {
       <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:px-10">
         <Link
           to="/"
-          className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground transition hover:text-foreground"
+          className="group inline-flex items-center gap-2 rounded-full border border-transparent px-3 py-1.5 text-xs uppercase tracking-[0.25em] text-muted-foreground transition-all duration-300 hover:border-white/10 hover:bg-white/5 hover:text-foreground hover:shadow-[0_0_20px_-4px_var(--glow)]"
         >
-          <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
-          Back to portfolio
+          <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
+          <span className="transition-transform duration-300 group-hover:translate-x-0.5">Back to portfolio</span>
         </Link>
         <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
           Skill {String(idx + 1).padStart(2, "0")} / {String(SKILLS.length).padStart(2, "0")}
