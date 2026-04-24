@@ -193,10 +193,11 @@ function SkillDetail() {
       <div className="relative z-10 mx-auto max-w-6xl px-6 pb-16 sm:px-10">
         <Link
           to="/"
-          className="group inline-flex items-center gap-2 text-sm text-foreground/80 transition hover:text-foreground"
+          className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm text-foreground/80 backdrop-blur transition-all duration-500 hover:-translate-y-0.5 hover:border-accent-cyan/40 hover:text-foreground hover:shadow-[0_10px_40px_-10px_var(--glow)]"
         >
-          See all skills
-          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-accent-cyan/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
+          <span className="relative">See all skills</span>
+          <ArrowUpRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent-cyan" />
         </Link>
       </div>
     </main>
