@@ -158,38 +158,68 @@ function SkillDetail() {
         <Link
           to="/skills/$slug"
           params={{ slug: prev.slug }}
-          className="glass-panel group relative flex items-center justify-between overflow-hidden rounded-2xl px-5 py-4 transition-all duration-500 hover:-translate-y-1.5 hover:scale-[1.02] hover:border-accent-cyan/60 hover:shadow-[0_25px_60px_-15px_var(--glow)]"
+          className="glass-panel group relative flex items-center justify-between overflow-hidden rounded-2xl px-5 py-4 transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.03] hover:border-accent-cyan/70 hover:shadow-[0_30px_70px_-15px_var(--glow),0_0_0_1px_oklch(0.82_0.13_200/40%)_inset]"
         >
-          <span className="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent-cyan/10 via-transparent to-accent-violet/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-          <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-accent-cyan/25 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full" />
+          {/* animated conic glow border */}
+          <span
+            className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style={{
+              background:
+                "conic-gradient(from 0deg, oklch(0.82 0.13 200 / 0%), oklch(0.82 0.13 200 / 60%), oklch(0.7 0.18 285 / 60%), oklch(0.82 0.13 200 / 0%))",
+              padding: "1px",
+              WebkitMask:
+                "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+              WebkitMaskComposite: "xor",
+              maskComposite: "exclude",
+              animation: "spin 4s linear infinite",
+            }}
+          />
+          <span className="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent-cyan/15 via-transparent to-accent-violet/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-accent-cyan/30 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full" />
           <div className="relative flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-500 group-hover:-translate-x-1 group-hover:border-accent-cyan/50 group-hover:bg-accent-cyan/10 group-hover:shadow-[0_0_20px_-4px_var(--glow)]">
-              <ArrowLeft className="h-4 w-4 text-muted-foreground transition-all duration-300 group-hover:-translate-x-0.5 group-hover:text-accent-cyan" />
+            <span className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-500 group-hover:-translate-x-1.5 group-hover:rotate-[-8deg] group-hover:border-accent-cyan/60 group-hover:bg-accent-cyan/15 group-hover:shadow-[0_0_25px_-2px_var(--glow)]">
+              {/* trailing arrow */}
+              <ArrowLeft className="absolute h-4 w-4 text-accent-cyan/0 transition-all duration-500 group-hover:-translate-x-3 group-hover:text-accent-cyan/40" />
+              <ArrowLeft className="relative h-4 w-4 text-muted-foreground transition-all duration-300 group-hover:-translate-x-1 group-hover:text-accent-cyan" />
             </span>
-            <div>
-              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground transition-colors duration-300 group-hover:text-accent-cyan/80">
+            <div className="overflow-hidden">
+              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground transition-all duration-500 group-hover:translate-y-[-1px] group-hover:tracking-[0.35em] group-hover:text-accent-cyan">
                 Previous
               </div>
-              <div className="font-display text-base font-medium transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-foreground">{prev.name}</div>
+              <div className="font-display text-base font-medium transition-all duration-500 group-hover:translate-x-1 group-hover:text-foreground">{prev.name}</div>
             </div>
           </div>
         </Link>
         <Link
           to="/skills/$slug"
           params={{ slug: next.slug }}
-          className="glass-panel group relative flex items-center justify-between overflow-hidden rounded-2xl px-5 py-4 transition-all duration-500 hover:-translate-y-1.5 hover:scale-[1.02] hover:border-accent-violet/60 hover:shadow-[0_25px_60px_-15px_var(--glow)] sm:flex-row-reverse"
+          className="glass-panel group relative flex items-center justify-between overflow-hidden rounded-2xl px-5 py-4 transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.03] hover:border-accent-violet/70 hover:shadow-[0_30px_70px_-15px_var(--glow),0_0_0_1px_oklch(0.7_0.18_285/40%)_inset] sm:flex-row-reverse"
         >
-          <span className="pointer-events-none absolute inset-0 bg-gradient-to-bl from-accent-violet/10 via-transparent to-accent-cyan/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-          <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-accent-violet/25 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full" />
+          <span
+            className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style={{
+              background:
+                "conic-gradient(from 180deg, oklch(0.7 0.18 285 / 0%), oklch(0.7 0.18 285 / 60%), oklch(0.82 0.13 200 / 60%), oklch(0.7 0.18 285 / 0%))",
+              padding: "1px",
+              WebkitMask:
+                "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+              WebkitMaskComposite: "xor",
+              maskComposite: "exclude",
+              animation: "spin 4s linear infinite reverse",
+            }}
+          />
+          <span className="pointer-events-none absolute inset-0 bg-gradient-to-bl from-accent-violet/15 via-transparent to-accent-cyan/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-accent-violet/30 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full" />
           <div className="relative flex items-center gap-3 sm:flex-row-reverse">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-500 group-hover:translate-x-1 group-hover:border-accent-violet/50 group-hover:bg-accent-violet/10 group-hover:shadow-[0_0_20px_-4px_var(--glow)]">
-              <ArrowRight className="h-4 w-4 text-muted-foreground transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-accent-cyan" />
+            <span className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-500 group-hover:translate-x-1.5 group-hover:rotate-[8deg] group-hover:border-accent-violet/60 group-hover:bg-accent-violet/15 group-hover:shadow-[0_0_25px_-2px_var(--glow)]">
+              <ArrowRight className="absolute h-4 w-4 text-accent-violet/0 transition-all duration-500 group-hover:translate-x-3 group-hover:text-accent-violet/40" />
+              <ArrowRight className="relative h-4 w-4 text-muted-foreground transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent-cyan" />
             </span>
-            <div className="sm:text-right">
-              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground transition-colors duration-300 group-hover:text-accent-cyan/80">
+            <div className="overflow-hidden sm:text-right">
+              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground transition-all duration-500 group-hover:translate-y-[-1px] group-hover:tracking-[0.35em] group-hover:text-accent-violet">
                 Next
               </div>
-              <div className="font-display text-base font-medium transition-all duration-300 group-hover:-translate-x-0.5 group-hover:text-foreground sm:group-hover:translate-x-0.5">{next.name}</div>
+              <div className="font-display text-base font-medium transition-all duration-500 group-hover:-translate-x-1 group-hover:text-foreground sm:group-hover:translate-x-1">{next.name}</div>
             </div>
           </div>
         </Link>
