@@ -158,30 +158,32 @@ function SkillDetail() {
         <Link
           to="/skills/$slug"
           params={{ slug: prev.slug }}
-          className="glass-panel group flex items-center justify-between rounded-2xl px-5 py-4 transition hover:border-accent-cyan/40"
+          className="glass-panel group relative flex items-center justify-between overflow-hidden rounded-2xl px-5 py-4 transition-all duration-500 hover:-translate-y-1 hover:border-accent-cyan/40 hover:shadow-[0_20px_50px_-15px_var(--glow)]"
         >
-          <div className="flex items-center gap-3">
-            <ArrowLeft className="h-4 w-4 text-muted-foreground transition group-hover:-translate-x-0.5 group-hover:text-foreground" />
+          <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-accent-cyan/10 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
+          <div className="relative flex items-center gap-3">
+            <ArrowLeft className="h-4 w-4 text-muted-foreground transition-all duration-300 group-hover:-translate-x-1.5 group-hover:text-accent-cyan" />
             <div>
-              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground transition-colors duration-300 group-hover:text-accent-cyan/80">
                 Previous
               </div>
-              <div className="font-display text-base font-medium">{prev.name}</div>
+              <div className="font-display text-base font-medium transition-colors duration-300 group-hover:text-foreground">{prev.name}</div>
             </div>
           </div>
         </Link>
         <Link
           to="/skills/$slug"
           params={{ slug: next.slug }}
-          className="glass-panel group flex items-center justify-between rounded-2xl px-5 py-4 transition hover:border-accent-cyan/40 sm:flex-row-reverse"
+          className="glass-panel group relative flex items-center justify-between overflow-hidden rounded-2xl px-5 py-4 transition-all duration-500 hover:-translate-y-1 hover:border-accent-cyan/40 hover:shadow-[0_20px_50px_-15px_var(--glow)] sm:flex-row-reverse"
         >
-          <div className="flex items-center gap-3 sm:flex-row-reverse">
-            <ArrowRight className="h-4 w-4 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:text-foreground" />
+          <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-accent-violet/10 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
+          <div className="relative flex items-center gap-3 sm:flex-row-reverse">
+            <ArrowRight className="h-4 w-4 text-muted-foreground transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-accent-cyan" />
             <div className="sm:text-right">
-              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground transition-colors duration-300 group-hover:text-accent-cyan/80">
                 Next
               </div>
-              <div className="font-display text-base font-medium">{next.name}</div>
+              <div className="font-display text-base font-medium transition-colors duration-300 group-hover:text-foreground">{next.name}</div>
             </div>
           </div>
         </Link>
