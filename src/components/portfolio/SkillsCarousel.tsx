@@ -169,20 +169,22 @@ export function SkillsCarousel() {
         type="button"
         aria-label="Previous skill"
         onClick={scrollPrev}
-        className="absolute left-0 top-1/2 z-20 -translate-x-2 -translate-y-1/2 sm:-translate-x-6"
+        className="group absolute left-0 top-1/2 z-20 -translate-x-2 -translate-y-1/2 sm:-translate-x-6"
       >
-        <span className="glass-panel flex h-11 w-11 items-center justify-center rounded-full text-foreground/80 transition hover:text-foreground hover:scale-105">
-          <ChevronLeft className="h-5 w-5" />
+        <span className="glass-panel relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full text-foreground/80 transition-all duration-500 group-hover:-translate-x-1 group-hover:scale-110 group-hover:border-accent-cyan/50 group-hover:text-foreground group-hover:shadow-[0_0_30px_-4px_var(--glow)]">
+          <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-br from-accent-cyan/20 to-accent-violet/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <ChevronLeft className="relative h-5 w-5 transition-transform duration-300 group-hover:-translate-x-0.5 group-active:-translate-x-1" />
         </span>
       </button>
       <button
         type="button"
         aria-label="Next skill"
         onClick={scrollNext}
-        className="absolute right-0 top-1/2 z-20 translate-x-2 -translate-y-1/2 sm:translate-x-6"
+        className="group absolute right-0 top-1/2 z-20 translate-x-2 -translate-y-1/2 sm:translate-x-6"
       >
-        <span className="glass-panel flex h-11 w-11 items-center justify-center rounded-full text-foreground/80 transition hover:text-foreground hover:scale-105">
-          <ChevronRight className="h-5 w-5" />
+        <span className="glass-panel relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full text-foreground/80 transition-all duration-500 group-hover:translate-x-1 group-hover:scale-110 group-hover:border-accent-cyan/50 group-hover:text-foreground group-hover:shadow-[0_0_30px_-4px_var(--glow)]">
+          <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-br from-accent-cyan/20 to-accent-violet/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <ChevronRight className="relative h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5 group-active:translate-x-1" />
         </span>
       </button>
 
