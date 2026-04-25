@@ -24,6 +24,10 @@ export type SkillProject = {
   stack: string[];
   outcomes: string[];
   hotspots?: ProjectHotspot[];
+  /** Optional URL to a downloadable / viewable PDF (preview, sample, etc.) */
+  pdfUrl?: string;
+  /** Label shown on the PDF call-to-action button */
+  pdfLabel?: string;
 };
 
 export type Skill = {
