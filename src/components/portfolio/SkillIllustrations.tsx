@@ -319,171 +319,95 @@ export function DataModelingIllustration() {
   return (
     <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
       <GlassDefs id="dm" />
-
-      <circle cx="88" cy="92" r="68" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.55" />
-      <circle cx="240" cy="120" r="54" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.4" />
-
-      {/* main spreadsheet */}
-      <g transform="translate(24 22)">
+      <circle cx="80" cy="160" r="60" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.7" />
+      {/* back panel — spreadsheet/model canvas */}
+      <g transform="translate(60 20)">
         <rect
-          width="272"
-          height="156"
-          rx="14"
+          width="220"
+          height="130"
+          rx="12"
           fill="url(#dm-glass)"
           stroke="oklch(1 0 0 / 14%)"
           strokeWidth="1"
         />
-
-        {/* top bar */}
-        <rect width="272" height="22" rx="14" fill="oklch(1 0 0 / 7%)" />
+        {/* header bar */}
+        <rect width="220" height="22" rx="12" fill="oklch(1 0 0 / 6%)" />
         <circle cx="14" cy="11" r="3" fill="oklch(0.82 0.13 200)" />
         <circle cx="26" cy="11" r="3" fill="oklch(0.7 0.18 285)" />
-        <rect x="42" y="7" width="68" height="8" rx="3" fill="oklch(1 0 0 / 16%)" />
-        <rect x="226" y="7" width="34" height="8" rx="3" fill="oklch(0.82 0.13 200 / 22%)" />
-
-        {/* row index strip */}
-        <rect x="0" y="22" width="22" height="134" fill="oklch(1 0 0 / 5%)" />
-
-        {/* highlighted modeled area */}
-        <rect
-          x="74"
-          y="46"
-          width="140"
-          height="82"
-          rx="8"
-          fill="oklch(0.82 0.13 200 / 12%)"
-          stroke="oklch(0.82 0.13 200 / 55%)"
-          strokeWidth="1.2"
-        />
-
-        {/* header row */}
-        <rect x="22" y="22" width="250" height="20" fill="oklch(1 0 0 / 5%)" />
-        {["A", "B", "C", "D", "E"].map((label, i) => (
-          <text
-            key={label}
-            x={48 + i * 46}
-            y="35"
-            textAnchor="middle"
-            fontFamily="Space Grotesk, sans-serif"
-            fontSize="9"
-            fontWeight="700"
-            fill={i === 2 ? "oklch(0.92 0.13 200)" : "oklch(1 0 0 / 70%)"}
-          >
-            {label}
-          </text>
+        <rect x="40" y="7" width="80" height="8" rx="3" fill="oklch(1 0 0 / 18%)" />
+        {/* column header tiles A / B / C */}
+        {["A", "B", "C"].map((label, i) => (
+          <g key={label} transform={`translate(${12 + i * 68} 36)`}>
+            <rect
+              width="60"
+              height="36"
+              rx="6"
+              fill="oklch(1 0 0 / 6%)"
+              stroke="oklch(1 0 0 / 10%)"
+            />
+            <rect x="8" y="8" width="14" height="6" rx="2" fill="oklch(0.82 0.13 200 / 70%)" />
+            <text
+              x="46"
+              y="14"
+              textAnchor="middle"
+              fontFamily="Space Grotesk, sans-serif"
+              fontSize="7"
+              fontWeight="700"
+              fill="oklch(1 0 0 / 70%)"
+            >
+              {label}
+            </text>
+            <rect x="8" y="19" width="44" height="9" rx="2" fill="oklch(1 0 0 / 22%)" />
+          </g>
         ))}
-
-        {/* grid */}
-        {[0, 1, 2, 3, 4, 5].map((r) => (
-          <line
-            key={`r-${r}`}
-            x1="22"
-            x2="272"
-            y1={42 + r * 19}
-            y2={42 + r * 19}
-            stroke="oklch(1 0 0 / 10%)"
-            strokeWidth="1"
+        {/* relation/flow row → JOIN visualization */}
+        <g transform="translate(12 84)">
+          <rect width="196" height="38" rx="6" fill="oklch(1 0 0 / 5%)" />
+          {/* left mini-table */}
+          <rect x="8" y="8" width="44" height="22" rx="3" fill="oklch(0.82 0.13 200 / 22%)" stroke="oklch(0.82 0.13 200 / 60%)" strokeWidth="1" />
+          <line x1="14" x2="46" y1="16" y2="16" stroke="oklch(1 0 0 / 40%)" strokeWidth="1" />
+          <line x1="14" x2="40" y1="22" y2="22" stroke="oklch(1 0 0 / 28%)" strokeWidth="1" />
+          {/* join line */}
+          <path
+            d="M52 19 L 144 19"
+            fill="none"
+            stroke="url(#dm-stroke)"
+            strokeWidth="2"
+            strokeDasharray="3 4"
+            strokeLinecap="round"
           />
-        ))}
-        {[0, 1, 2, 3, 4, 5].map((c) => (
-          <line
-            key={`c-${c}`}
-            x1={22 + c * 50}
-            x2={22 + c * 50}
-            y1="22"
-            y2="156"
-            stroke="oklch(1 0 0 / 10%)"
-            strokeWidth="1"
-          />
-        ))}
-
-        {/* row numbers */}
-        {[1, 2, 3, 4, 5, 6].map((n, i) => (
-          <text
-            key={n}
-            x="11"
-            y={54 + i * 19}
-            textAnchor="middle"
-            fontFamily="Space Grotesk, sans-serif"
-            fontSize="8"
-            fill="oklch(1 0 0 / 55%)"
-          >
-            {n}
-          </text>
-        ))}
-
-        {/* simplified cell content */}
-        {[
-          { x: 30, y: 50, w: 30 },
-          { x: 78, y: 50, w: 22 },
-          { x: 126, y: 50, w: 34 },
-          { x: 176, y: 50, w: 28 },
-          { x: 226, y: 50, w: 24 },
-          { x: 30, y: 69, w: 24 },
-          { x: 78, y: 69, w: 30 },
-          { x: 126, y: 69, w: 24 },
-          { x: 176, y: 69, w: 36 },
-          { x: 226, y: 69, w: 18 },
-          { x: 30, y: 88, w: 18 },
-          { x: 78, y: 88, w: 26 },
-          { x: 126, y: 88, w: 42 },
-          { x: 176, y: 88, w: 22 },
-          { x: 226, y: 88, w: 30 },
-          { x: 30, y: 107, w: 28 },
-          { x: 78, y: 107, w: 32 },
-          { x: 126, y: 107, w: 24 },
-          { x: 176, y: 107, w: 30 },
-          { x: 226, y: 107, w: 20 },
-          { x: 30, y: 126, w: 22 },
-          { x: 78, y: 126, w: 30 },
-          { x: 126, y: 126, w: 36 },
-          { x: 176, y: 126, w: 24 },
-          { x: 226, y: 126, w: 28 },
-        ].map((cell, i) => (
-          <rect
-            key={i}
-            x={cell.x}
-            y={cell.y}
-            width={cell.w}
-            height="5"
-            rx="2.5"
-            fill={
-              cell.x >= 122 && cell.x <= 182
-                ? "oklch(0.82 0.13 200 / 45%)"
-                : "oklch(1 0 0 / 20%)"
-            }
-          />
-        ))}
-
-        {/* issue markers on raw cells */}
-        <circle cx="95" cy="72" r="2.5" fill="oklch(0.7 0.2 25)" />
-        <circle cx="48" cy="91" r="2.5" fill="oklch(0.78 0.16 95)" />
-
-        {/* formula / model chip */}
-        <g transform="translate(176 120)" className="animate-float-slow">
-          <rect
-            width="76"
-            height="24"
-            rx="8"
-            fill="oklch(0.7 0.18 285 / 18%)"
-            stroke="oklch(0.7 0.18 285 / 55%)"
-            strokeWidth="1.2"
-          />
-          <text
-            x="38"
-            y="16"
-            textAnchor="middle"
-            fontFamily="Space Grotesk, sans-serif"
-            fontSize="8"
-            fontWeight="700"
-            letterSpacing="1.5"
-            fill="oklch(0.9 0.14 285)"
-          >
-            MODEL READY
-          </text>
+          <circle cx="98" cy="19" r="3" fill="oklch(0.95 0.12 200)" className="animate-pulse-glow" />
+          {/* right mini-table */}
+          <rect x="144" y="8" width="44" height="22" rx="3" fill="oklch(0.7 0.18 285 / 22%)" stroke="oklch(0.7 0.18 285 / 60%)" strokeWidth="1" />
+          <line x1="150" x2="182" y1="16" y2="16" stroke="oklch(1 0 0 / 40%)" strokeWidth="1" />
+          <line x1="150" x2="176" y1="22" y2="22" stroke="oklch(1 0 0 / 28%)" strokeWidth="1" />
         </g>
+      </g>
+      {/* front floating tile — clean schema chip */}
+      <g transform="translate(28 110)" className="animate-float-slow">
+        <rect
+          width="92"
+          height="72"
+          rx="10"
+          fill="url(#dm-glass)"
+          stroke="oklch(0.82 0.13 200 / 45%)"
+          strokeWidth="1"
+        />
+        <rect x="10" y="12" width="40" height="6" rx="2" fill="oklch(1 0 0 / 30%)" />
+        <text
+          x="10"
+          y="44"
+          fontFamily="Space Grotesk, sans-serif"
+          fontSize="20"
+          fontWeight="600"
+          fill="oklch(0.92 0.12 200)"
+        >
+          {`{ : }`}
+        </text>
+        <rect x="10" y="56" width="60" height="4" rx="2" fill="oklch(1 0 0 / 18%)" />
       </g>
     </svg>
   );
 }
+
 
