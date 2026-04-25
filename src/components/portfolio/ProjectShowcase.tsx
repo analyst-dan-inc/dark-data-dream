@@ -442,6 +442,11 @@ function ImageLightbox({
 }: ImageLightboxProps) {
   const { zoom, offset, dragging, setZoom, reset, onWheel, onMouseDown, onMouseMove, onMouseUp } =
     useZoomPan({ min: 1, max: 4, step: 0.25 });
+  const [activeHotspot, setActiveHotspot] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!open) setActiveHotspot(null);
+  }, [open]);
 
   // reset whenever opened/closed
   useEffect(() => {
