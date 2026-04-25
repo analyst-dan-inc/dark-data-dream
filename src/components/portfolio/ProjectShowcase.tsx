@@ -85,17 +85,30 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
                 style={{ transform: "translateZ(60px)" }}
               >
                 <Sparkles className="h-3 w-3 text-accent-cyan" />
-                Hover the dots
+                Explore the pins
               </div>
 
-              {/* hotspots — appear on hover, parallax by depth */}
+              {/* hotspots — numbered pins with smart-flipping captions */}
               {hotspots.map((h, i) => {
                 const depth = h.depth ?? 0.5;
-                // parallax shift in px from center
                 const offsetX = (tilt.mx - 50) * 0.4 * depth;
                 const offsetY = (tilt.my - 50) * 0.4 * depth;
                 const z = 30 + depth * 80;
                 const isActive = activeHotspot === i;
+                const anyActive = activeHotspot !== null;
+                // smart flip — keep tooltip inside frame
+                const flipX = h.x > 65 ? "right" : h.x < 35 ? "left" : "center";
+                const flipY = h.y > 70 ? "top" : "bottom";
+                const tooltipPos =
+                  flipY === "top"
+                    ? "bottom-full mb-3"
+                    : "top-full mt-3";
+                const tooltipAlign =
+                  flipX === "right"
+                    ? "right-0 translate-x-0"
+                    : flipX === "left"
+                    ? "left-0 translate-x-0"
+                    : "left-1/2 -translate-x-1/2";
                 return (
                   <div
                     key={h.label}
@@ -107,6 +120,7 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
                       transition: tilt.active
                         ? "opacity 400ms ease-out"
                         : "transform 500ms ease-out, opacity 400ms ease-out",
+                      zIndex: isActive ? 50 : 10,
                     }}
                     onMouseEnter={() => setActiveHotspot(i)}
                     onMouseLeave={() => setActiveHotspot(null)}
@@ -114,25 +128,55 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
                     <button
                       type="button"
                       aria-label={h.label}
+                      aria-expanded={isActive}
                       onClick={() => setActiveHotspot(isActive ? null : i)}
-                      className="group/dot relative flex h-5 w-5 items-center justify-center"
+                      className="group/dot relative flex h-7 w-7 items-center justify-center"
                     >
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-cyan/60" />
-                      <span className="relative inline-flex h-3 w-3 rounded-full bg-accent-cyan shadow-[0_0_18px_var(--glow)] ring-2 ring-background/80 transition-transform duration-200 group-hover/dot:scale-125" />
+                      {/* outer halo ring */}
+                      <span
+                        className={`absolute inset-0 rounded-full border border-accent-cyan/40 transition-all duration-500 ${
+                          isActive
+                            ? "scale-150 border-accent-cyan/70 opacity-100"
+                            : "scale-100 opacity-60 group-hover/dot:scale-125 group-hover/dot:opacity-100"
+                        }`}
+                      />
+                      {/* pulsing ping — hide when active or another active to reduce noise */}
+                      <span
+                        className={`absolute inline-flex h-5 w-5 rounded-full bg-accent-cyan/50 transition-opacity duration-300 ${
+                          anyActive ? "opacity-0" : "opacity-100 animate-ping"
+                        }`}
+                      />
+                      {/* core pin with number */}
+                      <span
+                        className={`relative inline-flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-semibold tabular-nums text-background ring-2 ring-background/80 shadow-[0_0_22px_var(--glow)] transition-all duration-300 ${
+                          isActive
+                            ? "scale-110 bg-gradient-to-br from-accent-cyan to-accent-violet text-background"
+                            : "bg-accent-cyan group-hover/dot:scale-110 group-hover/dot:bg-gradient-to-br group-hover/dot:from-accent-cyan group-hover/dot:to-accent-violet"
+                        }`}
+                      >
+                        {i + 1}
+                      </span>
                     </button>
 
-                    {/* tooltip */}
+                    {/* tooltip — flipped to stay inside frame */}
                     <div
-                      className={`pointer-events-none absolute left-1/2 top-full mt-3 w-56 -translate-x-1/2 rounded-xl border border-white/15 bg-background/85 px-3 py-2 text-left shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all duration-300 ${
+                      className={`pointer-events-none absolute z-50 w-60 ${tooltipPos} ${tooltipAlign} rounded-xl border border-white/15 bg-background/90 px-3.5 py-2.5 text-left shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-all duration-300 ${
                         isActive
-                          ? "translate-y-0 opacity-100"
-                          : "-translate-y-1 opacity-0"
+                          ? "translate-y-0 scale-100 opacity-100"
+                          : `${flipY === "top" ? "translate-y-1" : "-translate-y-1"} scale-95 opacity-0`
                       }`}
                     >
-                      <div className="text-[10px] uppercase tracking-[0.25em] text-accent-cyan">
-                        {h.label}
+                      {/* gradient edge */}
+                      <div className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-br from-accent-cyan/10 via-transparent to-accent-violet/10" />
+                      <div className="relative flex items-center gap-2">
+                        <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent-cyan to-accent-violet text-[9px] font-semibold text-background">
+                          {i + 1}
+                        </span>
+                        <div className="text-[10px] uppercase tracking-[0.25em] text-accent-cyan">
+                          {h.label}
+                        </div>
                       </div>
-                      <div className="mt-1 text-xs leading-relaxed text-foreground/90">
+                      <div className="relative mt-1.5 text-xs leading-relaxed text-foreground/90">
                         {h.detail}
                       </div>
                     </div>
