@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import {
+  DataModelingIllustration,
   DataVizIllustration,
   ETLIllustration,
   ReportingIllustration,
@@ -217,7 +218,7 @@ export const SKILLS: Skill[] = [
       "Schema, freshness & quality monitoring",
     ],
     tools: ["Python", "SQL", "Power BI", "DAX", "dbt"],
-    Illustration: ETLIllustration,
+    Illustration: DataModelingIllustration,
   },
 ];
 
