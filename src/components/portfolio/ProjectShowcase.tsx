@@ -130,6 +130,23 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent-cyan/5 via-transparent to-accent-violet/10 mix-blend-screen" />
               <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
 
+              {/* magnifier toggle — top-right of image */}
+              {supportsHover && (
+                <button
+                  type="button"
+                  onClick={() => setLensActive((v) => !v)}
+                  aria-label={lensActive ? "Disable magnifier" : "Enable magnifier"}
+                  title={lensActive ? "Disable magnifier" : "Magnifier"}
+                  className={cn(
+                    "absolute right-3 top-3 z-20 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-background/70 text-foreground/85 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-accent-cyan/50 hover:text-foreground hover:shadow-[0_0_20px_-4px_var(--glow)]",
+                    lensActive && "border-accent-cyan/60 bg-accent-cyan/15 text-accent-cyan",
+                  )}
+                  style={{ transform: "translateZ(60px)" }}
+                >
+                  {lensActive ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
+                </button>
+              )}
+
               {/* explore hint — bottom-right badge */}
               <div
                 className="pointer-events-none absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-background/70 px-2.5 py-1 text-[10px] uppercase tracking-[0.3em] text-foreground/85 backdrop-blur-md"
@@ -201,26 +218,8 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
       <div className="glass-panel relative overflow-hidden rounded-2xl px-5 py-4">
         <div className="absolute inset-0 bg-gradient-to-r from-accent-cyan/5 via-transparent to-accent-violet/5" />
 
-        {/* top-right toolbar */}
-        <div className="absolute right-3 top-3 z-10 flex items-center gap-1.5">
-          {supportsHover && (
-            <button
-              type="button"
-              onClick={() => setLensActive((v) => !v)}
-              aria-label={lensActive ? "Disable magnifier" : "Enable magnifier"}
-              title={lensActive ? "Disable magnifier" : "Magnifier"}
-              className={cn(
-                "inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-foreground/85 transition-all duration-300 hover:scale-105 hover:border-accent-cyan/50 hover:bg-white/10 hover:text-foreground hover:shadow-[0_0_20px_-4px_var(--glow)]",
-                lensActive && "border-accent-cyan/60 bg-accent-cyan/10 text-accent-cyan",
-              )}
-            >
-              {lensActive ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
-            </button>
-          )}
-        </div>
-
         <div className="relative flex flex-col gap-3">
-          <div className="pr-24">
+          <div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
               Featured project
             </div>
