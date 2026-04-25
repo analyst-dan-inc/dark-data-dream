@@ -85,7 +85,7 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
                 style={{ transform: "translateZ(60px)" }}
               >
                 <Sparkles className="h-3 w-3 text-accent-cyan" />
-                Hover the dots
+                Explore the pins
               </div>
 
               {/* hotspots — numbered pins with smart-flipping captions */}
