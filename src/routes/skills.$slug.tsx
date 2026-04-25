@@ -145,9 +145,24 @@ function SkillDetail() {
           >
             <div className="glass-panel relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-[27px]">
               <div className="absolute inset-0 grid-bg opacity-40" />
-              <div className="relative h-full w-full p-6 sm:p-10">
-                <Illustration />
-              </div>
+              {skill.image ? (
+                <div className="group relative h-full w-full p-4 sm:p-6">
+                  <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-black/30 shadow-[0_30px_80px_-30px_var(--glow)]">
+                    <img
+                      src={skill.image}
+                      alt={skill.imageAlt ?? skill.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent-cyan/10 via-transparent to-accent-violet/10 mix-blend-screen" />
+                    <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
+                  </div>
+                </div>
+              ) : (
+                <div className="relative h-full w-full p-6 sm:p-10">
+                  <Illustration />
+                </div>
+              )}
             </div>
           </div>
         </div>
