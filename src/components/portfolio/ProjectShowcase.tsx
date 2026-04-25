@@ -217,16 +217,6 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
             >
               {lensActive ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
             </button>
-          )}
-          <button
-            type="button"
-            onClick={() => setImageLightboxOpen(true)}
-            aria-label="Open fullscreen"
-            title="Open fullscreen"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-foreground/85 transition-all duration-300 hover:scale-105 hover:border-accent-cyan/50 hover:bg-white/10 hover:text-foreground hover:shadow-[0_0_20px_-4px_var(--glow)]"
-          >
-            <Maximize2 className="h-3.5 w-3.5" />
-          </button>
         </div>
 
         <div className="relative flex flex-col gap-3">
