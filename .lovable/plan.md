@@ -1,58 +1,50 @@
+# Add SVG illustration — Data Preparation & Modeling
+
 ## Goal
+Give the **Data Preparation & Modeling** card its own visual identity, instead of reusing `ETLIllustration`. The new SVG should tell the story of the skill at a glance: **messy raw sources → cleaning/shaping pipeline → clean star-schema model**.
 
-Add the same zoom interactions previously approved (hover magnifier + click-to-lightbox) to the project showcase image, **and** extend the PDF call-to-action so the user can zoom into the PDF inline as well — not just open it in a new tab.
+## Design concept — `DataModelingIllustration`
+Three stacked horizontal "lanes" inside the same 320×200 glass viewBox used by the other illustrations, so it sits visually consistent with `DataVizIllustration`, `ReportingIllustration`, and `ETLIllustration`.
 
-This applies to both `/skills/dashboarding` and `/skills/reporting`, since both share `ProjectShowcase.tsx`.
+1. **Left lane — Raw sources (chaos)**
+   - 3 small glass tiles representing heterogeneous inputs: a **CSV** sheet (grid of tiny cells), an **API** brace `{ }`, and a **DB** cylinder.
+   - Slightly tilted / uneven — visual hint of "messy".
+   - Tiny red/amber dots on a couple of cells = data quality issues.
 
----
+2. **Middle lane — Transformation pipeline**
+   - A horizontal flow with two glass "gear/funnel" nodes connected by a dashed animated stroke (reusing the existing `animate-pulse-glow` / dashed-stroke language from `ETLIllustration`).
+   - Small floating particles travel along the line (static SVG, animation-delay staggered) to suggest rows being processed.
+   - Micro-labels: `clean` and `shape` in tiny uppercase tracking — matches the typographic voice used elsewhere (`Space Grotesk`, 10–12px).
 
-## 1. Project image — hover magnifier + lightbox
+3. **Right lane — Star-schema model (order)**
+   - A central **fact table** rectangle (glass + cyan stroke) surrounded by 4 smaller **dimension tables** connected by thin straight lines = classic star schema silhouette.
+   - Each table shows 2–3 horizontal lines as "columns".
+   - Subtle radial orb behind the star to make it feel like the "destination of clarity".
 
-In `src/components/portfolio/ProjectShowcase.tsx`:
+## Visual language (consistent with existing illustrations)
+- Reuses the same `<GlassDefs id="dm" />` pattern (glass gradient, stroke gradient, glow gradient, orb radial, blur filter).
+- Same color tokens: `oklch(0.82 0.13 200)` cyan + `oklch(0.7 0.18 285)` violet accents, `oklch(1 0 0 / …)` whites for glass.
+- Same animations already in the codebase: `animate-pulse-glow`, `animate-float-slow`.
+- Same 320×200 viewBox + `h-full w-full` sizing so it slots into the card unchanged.
 
-- **Hover magnifier (lens)**
-  - Circular ~180px lens that follows the cursor over the image
-  - `background-image` of the same source at ~250% scale, positioned via the cursor's relative x/y
-  - Disable the 3D tilt while the lens is active so the zoom stays accurate
-  - Hidden on touch devices
+## Files to change
 
-- **Click-to-open lightbox**
-  - Use existing `src/components/ui/dialog.tsx` (Radix Dialog)
-  - Fullscreen-ish content with the image rendered large
-  - Controls: mouse wheel to zoom (1x–4x), click-drag to pan, `+` / `-` / `0` keyboard shortcuts, on-screen `ZoomIn` / `ZoomOut` / `Maximize2` / `X` buttons (lucide-react)
-  - Hotspots remain visible inside the lightbox at their relative positions
-  - State: `lensActive`, `lightboxOpen`, `zoom`, `offset {x,y}`, `dragging`
+### 1. `src/components/portfolio/SkillIllustrations.tsx`
+- Add a new exported component `DataModelingIllustration()` implementing the three-lane composition above.
+- Keep all existing illustrations untouched.
 
-- **Toolbar overlay** (top-right of the inline image): small glass buttons for "Magnifier on/off" and "Open fullscreen", matching existing glass-panel style.
-
-## 2. PDF — zoomable inline preview
-
-Currently the "Open the PDF" button is just an `<a target="_blank">`. Upgrade it so the user can also preview + zoom the PDF inside the app:
-
-- Convert the PDF link into **two affordances** on the Reporting card:
-  1. **"Preview inline"** button → opens a new `Dialog` ("PDF lightbox") containing the PDF
-  2. **"Open in new tab"** secondary link → keeps the existing `target="_blank"` behavior as a fallback / download path
-
-- **PDF lightbox implementation** (no new heavy deps):
-  - Render the PDF via `<iframe src={pdfUrl} />` filling the dialog
-  - Wrap the iframe in a transform container with `scale(zoom)` and translate offsets
-  - Same zoom controls as the image lightbox: wheel-to-zoom (1x–3x), click-drag to pan, `+` / `-` / `0` shortcuts, on-screen `ZoomIn` / `ZoomOut` / `RotateCcw` (reset) / `X` buttons
-  - Browsers' built-in PDF viewer already provides its own zoom — our wrapper adds an extra outer zoom layer for quick magnification of the whole page, which is what was requested ("zoom in for the PDF too")
-  - The 5-page-only restriction is already enforced by serving `public/reports/olist-report-preview.pdf` — no change needed there
-
-- A small caption under the PDF in the dialog: *"Preview limited to the first 5 pages."*
-
-## 3. Wiring & types
-
-- No changes needed to `skills-data.ts` types — `pdfUrl` / `pdfLabel` already exist
-- All new state lives inside `ProjectShowcase.tsx`
-- Reuses existing design tokens (`accent-cyan`, `accent-violet`, `glass-panel`, `--glow`) — no new colors
-
-## Files to update
-
-- `src/components/portfolio/ProjectShowcase.tsx` — add magnifier, image lightbox, and PDF lightbox
+### 2. `src/components/portfolio/skills-data.ts`
+- Update the import line to also bring in `DataModelingIllustration`.
+- For the `data-prep-modeling` skill entry, replace `Illustration: ETLIllustration` with `Illustration: DataModelingIllustration`.
+- Leave all other skill entries (Dashboarding, Reporting) untouched — they keep their current illustrations.
+- `ETLIllustration` stays exported so it remains available if needed later.
 
 ## Out of scope
+- No changes to `SkillsCarousel`, the skill detail route, or the skill copy/highlights/tools.
+- No new assets, no PNG/JPG — pure inline SVG, matching the rest of the file.
+- No animation/CSS additions in `styles.css` — only reuse existing utility classes.
 
-- No new npm packages (no `react-pdf` / `pdf.js`) — keeps the bundle lean and avoids Worker-runtime concerns; relies on the browser's native PDF rendering inside the iframe
-- No changes to the PDF file itself (already truncated to 5 pages)
+## Acceptance check
+- The Data Preparation & Modeling card on `/` shows a distinct, on-brand glass SVG (raw → pipeline → star schema) instead of the current ETL nodes.
+- Dashboarding and Reporting cards look identical to before.
+- No TypeScript errors; build stays clean.
