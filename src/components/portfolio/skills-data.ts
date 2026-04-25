@@ -149,6 +149,8 @@ export const SKILLS: Skill[] = [
         "Signal de retard de livraison détecté sur 8,11% des commandes",
         "Synthèse adoptée comme support de décision pour les revues mensuelles",
       ],
+      pdfUrl: "/reports/olist-report-preview.pdf",
+      pdfLabel: "Read the 5-page preview",
       hotspots: [
         {
           x: 12,
