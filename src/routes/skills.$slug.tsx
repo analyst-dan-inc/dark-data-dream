@@ -143,25 +143,33 @@ function SkillDetail() {
                 "linear-gradient(135deg, oklch(0.82 0.13 200 / 55%) 0%, oklch(1 0 0 / 6%) 45%, oklch(0.7 0.18 285 / 55%) 100%)",
             }}
           >
-            <div className="glass-panel relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-[27px]">
-              <div className="absolute inset-0 grid-bg opacity-40" />
+            <div className="glass-panel group relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-[27px]">
               {skill.image ? (
-                <div className="group relative h-full w-full p-4 sm:p-6">
-                  <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-black/30 shadow-[0_30px_80px_-30px_var(--glow)]">
-                    <img
-                      src={skill.image}
-                      alt={skill.imageAlt ?? skill.name}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent-cyan/10 via-transparent to-accent-violet/10 mix-blend-screen" />
-                    <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
+                <>
+                  {/* image layer — behind the glass */}
+                  <img
+                    src={skill.image}
+                    alt={skill.imageAlt ?? skill.name}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full scale-105 object-cover blur-[6px] saturate-[0.85] brightness-90 transition-all duration-700 ease-out group-hover:scale-110 group-hover:blur-0 group-hover:saturate-100 group-hover:brightness-100"
+                  />
+                  {/* glass overlays — fade away on hover for clarity */}
+                  <div className="pointer-events-none absolute inset-0 grid-bg opacity-40 transition-opacity duration-700 group-hover:opacity-10" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-background/60 via-background/30 to-background/70 backdrop-blur-md transition-all duration-700 group-hover:from-background/10 group-hover:via-transparent group-hover:to-background/15 group-hover:backdrop-blur-0" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent-cyan/15 via-transparent to-accent-violet/20 mix-blend-screen transition-opacity duration-700 group-hover:opacity-40" />
+                  <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
+                  {/* hover hint */}
+                  <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-white/15 bg-background/40 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-foreground/70 backdrop-blur-md transition-all duration-500 group-hover:translate-y-2 group-hover:opacity-0">
+                    Hover to reveal
                   </div>
-                </div>
+                </>
               ) : (
-                <div className="relative h-full w-full p-6 sm:p-10">
-                  <Illustration />
-                </div>
+                <>
+                  <div className="absolute inset-0 grid-bg opacity-40" />
+                  <div className="relative h-full w-full p-6 sm:p-10">
+                    <Illustration />
+                  </div>
+                </>
               )}
             </div>
           </div>
