@@ -41,12 +41,12 @@ export type Skill = {
 
 export const SKILLS: Skill[] = [
   {
-    id: "dataviz",
-    slug: "data-visualization",
-    name: "Data Visualization",
+    id: "dashboarding",
+    slug: "dashboarding",
+    name: "Dashboarding",
     description:
-      "Translating complex datasets into clear, decision-ready visuals — dashboards, charts and narrative reports that make patterns obvious at a glance.",
-    long: "I design visuals that compress hours of analysis into seconds of understanding. From executive dashboards to one-shot narrative charts, every component is chosen for the question it answers — not for decoration. Color, hierarchy and motion are tuned so the signal lands first, and the detail rewards a closer look.",
+      "Designing decision-ready dashboards — KPI hierarchies, drill-downs and narrative layouts that turn complex datasets into clear answers at a glance.",
+    long: "I design dashboards that compress hours of analysis into seconds of understanding. From executive overviews to operational control rooms, every component is chosen for the question it answers — not for decoration. Color, hierarchy and motion are tuned so the signal lands first, and the detail rewards a closer look.",
     highlights: [
       "Executive dashboards with drill-down hierarchy",
       "Narrative charts tuned for storytelling",
