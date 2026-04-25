@@ -320,7 +320,7 @@ export function DataModelingIllustration() {
     <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
       <GlassDefs id="dm" />
       <circle cx="80" cy="160" r="60" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.7" />
-      {/* back panel — spreadsheet/model canvas */}
+      {/* back panel — same fill strategy as reporting, but data-modeling content */}
       <g transform="translate(60 20)">
         <rect
           width="220"
@@ -335,9 +335,14 @@ export function DataModelingIllustration() {
         <circle cx="14" cy="11" r="3" fill="oklch(0.82 0.13 200)" />
         <circle cx="26" cy="11" r="3" fill="oklch(0.7 0.18 285)" />
         <rect x="40" y="7" width="80" height="8" rx="3" fill="oklch(1 0 0 / 18%)" />
-        {/* column header tiles A / B / C */}
-        {["A", "B", "C"].map((label, i) => (
-          <g key={label} transform={`translate(${12 + i * 68} 36)`}>
+
+        {/* process tiles */}
+        {[
+          { label: "RAW", accent: "oklch(0.78 0.16 95 / 75%)" },
+          { label: "CLEAN", accent: "oklch(0.82 0.13 200 / 75%)" },
+          { label: "MODEL", accent: "oklch(0.7 0.18 285 / 75%)" },
+        ].map((item, i) => (
+          <g key={item.label} transform={`translate(${12 + i * 68} 36)`}>
             <rect
               width="60"
               height="36"
@@ -345,45 +350,89 @@ export function DataModelingIllustration() {
               fill="oklch(1 0 0 / 6%)"
               stroke="oklch(1 0 0 / 10%)"
             />
-            <rect x="8" y="8" width="14" height="6" rx="2" fill="oklch(0.82 0.13 200 / 70%)" />
+            <rect x="8" y="8" width="18" height="5" rx="2" fill={item.accent} />
             <text
-              x="46"
-              y="14"
+              x="32"
+              y="13"
               textAnchor="middle"
               fontFamily="Space Grotesk, sans-serif"
               fontSize="7"
               fontWeight="700"
-              fill="oklch(1 0 0 / 70%)"
+              letterSpacing="1"
+              fill="oklch(1 0 0 / 74%)"
             >
-              {label}
+              {item.label}
             </text>
-            <rect x="8" y="19" width="44" height="9" rx="2" fill="oklch(1 0 0 / 22%)" />
+            <rect x="8" y="19" width="18" height="9" rx="2" fill="oklch(1 0 0 / 18%)" />
+            <rect x="30" y="19" width="22" height="9" rx="2" fill="oklch(1 0 0 / 24%)" />
           </g>
         ))}
-        {/* relation/flow row → JOIN visualization */}
+
+        {/* large schema band */}
         <g transform="translate(12 84)">
           <rect width="196" height="38" rx="6" fill="oklch(1 0 0 / 5%)" />
-          {/* left mini-table */}
-          <rect x="8" y="8" width="44" height="22" rx="3" fill="oklch(0.82 0.13 200 / 22%)" stroke="oklch(0.82 0.13 200 / 60%)" strokeWidth="1" />
-          <line x1="14" x2="46" y1="16" y2="16" stroke="oklch(1 0 0 / 40%)" strokeWidth="1" />
-          <line x1="14" x2="40" y1="22" y2="22" stroke="oklch(1 0 0 / 28%)" strokeWidth="1" />
-          {/* join line */}
+
+          {/* left source table */}
+          <g transform="translate(8 7)">
+            <rect
+              width="34"
+              height="24"
+              rx="4"
+              fill="oklch(0.82 0.13 200 / 16%)"
+              stroke="oklch(0.82 0.13 200 / 52%)"
+              strokeWidth="1"
+            />
+            <rect x="0" y="0" width="34" height="7" rx="4" fill="oklch(0.82 0.13 200 / 42%)" />
+            <line x1="5" x2="29" y1="12" y2="12" stroke="oklch(1 0 0 / 34%)" strokeWidth="1" />
+            <line x1="5" x2="24" y1="17" y2="17" stroke="oklch(1 0 0 / 26%)" strokeWidth="1" />
+          </g>
+
+          {/* transformation flow */}
           <path
-            d="M52 19 L 144 19"
+            d="M42 19 C 64 19, 68 10, 88 10 C 106 10, 108 19, 124 19"
             fill="none"
             stroke="url(#dm-stroke)"
             strokeWidth="2"
             strokeDasharray="3 4"
             strokeLinecap="round"
           />
-          <circle cx="98" cy="19" r="3" fill="oklch(0.95 0.12 200)" className="animate-pulse-glow" />
-          {/* right mini-table */}
-          <rect x="144" y="8" width="44" height="22" rx="3" fill="oklch(0.7 0.18 285 / 22%)" stroke="oklch(0.7 0.18 285 / 60%)" strokeWidth="1" />
-          <line x1="150" x2="182" y1="16" y2="16" stroke="oklch(1 0 0 / 40%)" strokeWidth="1" />
-          <line x1="150" x2="176" y1="22" y2="22" stroke="oklch(1 0 0 / 28%)" strokeWidth="1" />
+          <circle cx="66" cy="19" r="2.5" fill="oklch(0.95 0.12 200)" className="animate-pulse-glow" />
+          <circle cx="100" cy="10" r="2.5" fill="oklch(0.9 0.14 285)" className="animate-pulse-glow" style={{ animationDelay: "0.35s" }} />
+
+          {/* center fact/model table */}
+          <g transform="translate(88 3)">
+            <rect
+              width="46"
+              height="32"
+              rx="5"
+              fill="oklch(0.7 0.18 285 / 18%)"
+              stroke="oklch(0.7 0.18 285 / 58%)"
+              strokeWidth="1"
+            />
+            <rect x="0" y="0" width="46" height="8" rx="5" fill="oklch(0.7 0.18 285 / 46%)" />
+            <line x1="6" x2="40" y1="14" y2="14" stroke="oklch(1 0 0 / 34%)" strokeWidth="1" />
+            <line x1="6" x2="36" y1="20" y2="20" stroke="oklch(1 0 0 / 26%)" strokeWidth="1" />
+            <line x1="6" x2="32" y1="26" y2="26" stroke="oklch(1 0 0 / 20%)" strokeWidth="1" />
+          </g>
+
+          {/* right dimension table */}
+          <g transform="translate(154 7)">
+            <rect
+              width="34"
+              height="24"
+              rx="4"
+              fill="oklch(0.82 0.13 200 / 16%)"
+              stroke="oklch(0.82 0.13 200 / 52%)"
+              strokeWidth="1"
+            />
+            <rect x="0" y="0" width="34" height="7" rx="4" fill="oklch(0.82 0.13 200 / 42%)" />
+            <line x1="5" x2="29" y1="12" y2="12" stroke="oklch(1 0 0 / 34%)" strokeWidth="1" />
+            <line x1="5" x2="24" y1="17" y2="17" stroke="oklch(1 0 0 / 26%)" strokeWidth="1" />
+          </g>
         </g>
       </g>
-      {/* front floating tile — clean schema chip */}
+
+      {/* front floating tile */}
       <g transform="translate(28 110)" className="animate-float-slow">
         <rect
           width="92"
@@ -398,16 +447,17 @@ export function DataModelingIllustration() {
           x="10"
           y="44"
           fontFamily="Space Grotesk, sans-serif"
-          fontSize="20"
-          fontWeight="600"
+          fontSize="18"
+          fontWeight="700"
           fill="oklch(0.92 0.12 200)"
         >
-          {`{ : }`}
+          SQL
         </text>
         <rect x="10" y="56" width="60" height="4" rx="2" fill="oklch(1 0 0 / 18%)" />
       </g>
     </svg>
   );
 }
+
 
 
