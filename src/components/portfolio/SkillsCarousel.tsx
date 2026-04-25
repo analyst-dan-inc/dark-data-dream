@@ -70,13 +70,12 @@ function SkillCard({
             />
           )}
 
-          {/* top illustration area — tall portrait, will hold a real project visual */}
-          <div className="relative aspect-[4/5] w-full overflow-hidden border-b border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent sm:aspect-[3/4]">
+          {/* top illustration area */}
+          <div className="relative h-[10.5rem] w-full overflow-hidden border-b border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent sm:h-[12rem] lg:h-[14rem] xl:h-[15.5rem]">
             <div className="absolute inset-0 grid-bg opacity-40" />
-            <div className="relative h-full w-full p-5 sm:p-7">
+            <div className="relative h-full w-full px-3 pb-7 pt-2 sm:px-4 sm:pb-8 sm:pt-3 lg:px-5 lg:pb-9 lg:pt-3">
               <Illustration />
             </div>
-            {/* placeholder caption hinting that a real project visual goes here */}
             <div className="pointer-events-none absolute bottom-3 left-4 right-4 flex items-center justify-between text-[9px] uppercase tracking-[0.3em] text-muted-foreground/70">
               <span>Project visual</span>
               <span>{skill.id}</span>
