@@ -137,12 +137,12 @@ export const SKILLS: Skill[] = [
     Illustration: ReportingIllustration,
     image: reportingImage,
     imageAlt:
-      "Olist BI report — cover, contexte, dictionnaire des variables and analyse exploratoire pages",
+      "Olist BI report — contexte, description des données, analyse exploratoire, déterminants du chiffre d'affaires et évolution mensuelle",
     project: {
       name: "Olist — Rapport d'Informatique Décisionnelle",
       role: "Data Analyst · Auteur du rapport",
       context:
-        "Rapport BI complet sur la marketplace e-commerce brésilienne Olist — du cadrage au diagnostic stratégique, conçu pour servir de référence aux équipes Pilotage & Analyse. Aperçu limité aux 5 premières pages.",
+        "Rapport BI complet sur la marketplace e-commerce brésilienne Olist — du cadrage au diagnostic stratégique, conçu pour servir de référence aux équipes Pilotage & Analyse. Aperçu limité aux 5 pages clés du diagnostic.",
       stack: ["Power BI", "Python", "SQL", "Pareto", "Storytelling"],
       outcomes: [
         "12–13 catégories identifiées comme cœur du chiffre d'affaires (80% via Pareto)",
@@ -154,22 +154,14 @@ export const SKILLS: Skill[] = [
       hotspots: [
         {
           x: 12,
-          y: 50,
-          depth: 0.55,
-          label: "Page de garde",
-          detail:
-            "Identité visuelle du rapport — Février 2026, étude E-Commerce Olist, signée Daniel Incama (M2 Économie Appliquée).",
-        },
-        {
-          x: 35,
-          y: 30,
-          depth: 0.7,
+          y: 35,
+          depth: 0.6,
           label: "Contexte & sources",
           detail:
             "Cadrage du modèle plateforme Olist + dataset Kaggle (~100 000 commandes Brésil 2016–2018, 9 tables relationnelles).",
         },
         {
-          x: 38,
+          x: 14,
           y: 78,
           depth: 0.45,
           label: "Schéma relationnel",
@@ -177,28 +169,36 @@ export const SKILLS: Skill[] = [
             "Cartographie des jointures entre commandes, paiements, produits, vendeurs et géolocalisation.",
         },
         {
-          x: 60,
-          y: 45,
-          depth: 0.8,
+          x: 33,
+          y: 55,
+          depth: 0.7,
           label: "Dictionnaire des variables",
           detail:
             "52 champs typés (ID, catégoriels, datetime, montants…) — la base d'un modèle sémantique propre et documenté.",
         },
         {
-          x: 82,
-          y: 32,
-          depth: 0.6,
+          x: 53,
+          y: 50,
+          depth: 0.55,
           label: "Profil Olist — KPIs",
           detail:
             "99 421 clients · 3 095 vendeurs · note moyenne 4,09/5 · 8,11% de retards. Indicateurs clés en un coup d'œil.",
         },
         {
-          x: 88,
-          y: 78,
-          depth: 0.4,
-          label: "Cadrage stratégique",
+          x: 72,
+          y: 55,
+          depth: 0.8,
+          label: "Pareto du CA",
           detail:
-            "Transition de la lecture descriptive vers l'analyse de performance : moteurs de CA, vendeurs, satisfaction.",
+            "12–13 catégories génèrent 80% du chiffre d'affaires — Beauté & santé, Montres & cadeaux, Linge de maison en tête.",
+        },
+        {
+          x: 90,
+          y: 45,
+          depth: 0.5,
+          label: "Évolution mensuelle",
+          detail:
+            "Croissance tirée par le volume de commandes (panier moyen stable 145–170 R$) — pic de novembre 2017 identifié.",
         },
       ],
     },
