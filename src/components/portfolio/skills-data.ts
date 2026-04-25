@@ -7,6 +7,25 @@ import {
 } from "./SkillIllustrations";
 import dataVizImage from "@/assets/skills/dataviz.png";
 
+export type ProjectHotspot = {
+  /** Position as % of the image (0–100) */
+  x: number;
+  y: number;
+  /** Parallax depth factor — 0 (static) to 1 (max movement) */
+  depth?: number;
+  label: string;
+  detail: string;
+};
+
+export type SkillProject = {
+  name: string;
+  role: string;
+  context: string;
+  stack: string[];
+  outcomes: string[];
+  hotspots?: ProjectHotspot[];
+};
+
 export type Skill = {
   id: string;
   slug: string;
@@ -18,6 +37,7 @@ export type Skill = {
   Illustration: () => ReactElement;
   image?: string;
   imageAlt?: string;
+  project?: SkillProject;
 };
 
 export const SKILLS: Skill[] = [
@@ -37,7 +57,64 @@ export const SKILLS: Skill[] = [
     tools: ["Power BI", "Tableau", "Plotly", "D3", "Figma"],
     Illustration: DataVizIllustration,
     image: dataVizImage,
-    imageAlt: "Olist e-commerce executive dashboard with KPIs, Brazil sales map, customer state trends and order delivery table",
+    imageAlt:
+      "Olist e-commerce executive dashboard with KPIs, Brazil sales map, customer state trends and order delivery table",
+    project: {
+      name: "Olist — E-commerce Executive Dashboard",
+      role: "Data Analyst · Dashboard Designer",
+      context:
+        "End-to-end BI workspace for a Brazilian e-commerce marketplace — built to give leadership a single screen for revenue, fulfillment and customer satisfaction.",
+      stack: ["Power BI", "DAX", "SQL", "Figma"],
+      outcomes: [
+        "Reporting prep cut from ~6h/week to near-zero",
+        "Surfaced regional delivery delays driving churn in 3 states",
+        "Adopted by Pilotage & Analyse teams as weekly source of truth",
+      ],
+      hotspots: [
+        {
+          x: 38,
+          y: 14,
+          depth: 0.6,
+          label: "KPI strip",
+          detail: "Revenue, AOV, orders & late-delivery rate with WoW deltas.",
+        },
+        {
+          x: 86,
+          y: 16,
+          depth: 0.45,
+          label: "Top categories",
+          detail: "Revenue ranking across product categories with bar drill-in.",
+        },
+        {
+          x: 26,
+          y: 56,
+          depth: 0.8,
+          label: "Brazil sales map",
+          detail: "Bubble map of orders per state — São Paulo dominates volume.",
+        },
+        {
+          x: 68,
+          y: 56,
+          depth: 0.55,
+          label: "State trend grid",
+          detail: "Sparkline per state to spot momentum at a glance.",
+        },
+        {
+          x: 88,
+          y: 58,
+          depth: 0.5,
+          label: "Satisfaction",
+          detail: "Average rating 4.3 ★ with distribution & trend per stars.",
+        },
+        {
+          x: 60,
+          y: 88,
+          depth: 0.35,
+          label: "Order log",
+          detail: "Operational table with delivery status flagged on-time / late.",
+        },
+      ],
+    },
   },
   {
     id: "reporting",
