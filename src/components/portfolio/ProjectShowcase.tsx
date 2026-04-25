@@ -114,11 +114,11 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
                     <button
                       type="button"
                       aria-label={h.label}
-                      className="group/dot relative flex h-5 w-5 items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                      style={{ transitionDelay: `${i * 60}ms` }}
+                      onClick={() => setActiveHotspot(isActive ? null : i)}
+                      className="group/dot relative flex h-5 w-5 items-center justify-center"
                     >
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-cyan/60" />
-                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent-cyan shadow-[0_0_18px_var(--glow)] ring-2 ring-background/70" />
+                      <span className="relative inline-flex h-3 w-3 rounded-full bg-accent-cyan shadow-[0_0_18px_var(--glow)] ring-2 ring-background/80 transition-transform duration-200 group-hover/dot:scale-125" />
                     </button>
 
                     {/* tooltip */}
