@@ -26,7 +26,7 @@ type ProjectShowcaseProps = {
 };
 
 const LENS_SIZE = 200; // px
-const LENS_ZOOM = 2.5;
+const LENS_ZOOM = 4;
 
 export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcaseProps) {
   const frameRef = useRef<HTMLDivElement>(null);
