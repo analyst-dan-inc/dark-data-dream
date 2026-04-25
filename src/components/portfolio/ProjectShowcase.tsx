@@ -4,7 +4,6 @@ import {
   Eye,
   EyeOff,
   FileText,
-  Maximize2,
   RotateCcw,
   Sparkles,
   X,
@@ -26,7 +25,7 @@ type ProjectShowcaseProps = {
 };
 
 const LENS_SIZE = 200; // px
-const LENS_ZOOM = 2.5;
+const LENS_ZOOM = 4;
 
 export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcaseProps) {
   const frameRef = useRef<HTMLDivElement>(null);
@@ -36,7 +35,6 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
   // zoom features
   const [lensActive, setLensActive] = useState(false);
   const [lensPos, setLensPos] = useState({ x: 0, y: 0 });
-  const [imageLightboxOpen, setImageLightboxOpen] = useState(false);
   const [pdfLightboxOpen, setPdfLightboxOpen] = useState(false);
   const [supportsHover, setSupportsHover] = useState(true);
 
@@ -219,15 +217,6 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
               {lensActive ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
             </button>
           )}
-          <button
-            type="button"
-            onClick={() => setImageLightboxOpen(true)}
-            aria-label="Open fullscreen"
-            title="Open fullscreen"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-foreground/85 transition-all duration-300 hover:scale-105 hover:border-accent-cyan/50 hover:bg-white/10 hover:text-foreground hover:shadow-[0_0_20px_-4px_var(--glow)]"
-          >
-            <Maximize2 className="h-3.5 w-3.5" />
-          </button>
         </div>
 
         <div className="relative flex flex-col gap-3">
@@ -297,16 +286,6 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
           )}
         </div>
       </div>
-
-      {/* image lightbox */}
-      <ImageLightbox
-        open={imageLightboxOpen}
-        onOpenChange={setImageLightboxOpen}
-        image={image}
-        imageAlt={imageAlt}
-        title={project.name}
-        hotspots={hotspots}
-      />
 
       {/* pdf lightbox */}
       {project.pdfUrl && (
