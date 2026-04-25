@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { Sparkles } from "lucide-react";
+import { FileText, Sparkles } from "lucide-react";
 import type { SkillProject } from "./skills-data";
 
 type ProjectShowcaseProps = {
@@ -254,6 +254,22 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
               </li>
             ))}
           </ul>
+
+          {project.pdfUrl && (
+            <a
+              href={project.pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/pdf relative mt-1 inline-flex items-center gap-2 self-start overflow-hidden rounded-full border border-accent-cyan/40 bg-gradient-to-r from-accent-cyan/15 to-accent-violet/15 px-4 py-2 text-xs font-medium text-foreground/90 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-cyan/70 hover:text-foreground hover:shadow-[0_10px_30px_-10px_var(--glow)]"
+            >
+              <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-accent-cyan/30 to-transparent transition-transform duration-700 ease-out group-hover/pdf:translate-x-full" />
+              <FileText className="relative h-3.5 w-3.5 text-accent-cyan" />
+              <span className="relative">{project.pdfLabel ?? "Open the PDF"}</span>
+              <span className="relative text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                · 5 pages
+              </span>
+            </a>
+          )}
         </div>
       </div>
     </div>
