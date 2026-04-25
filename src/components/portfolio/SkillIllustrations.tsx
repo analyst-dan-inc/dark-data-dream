@@ -316,19 +316,20 @@ export function ProgrammingIllustration() {
 }
 
 export function DataModelingIllustration() {
-  // Star-schema dimension table positions (relative to fact at 250,100)
+  // Star-schema dimension table positions (relative to fact at 252,108)
   const dims = [
-    { x: 250, y: 38 },
-    { x: 308, y: 100 },
-    { x: 250, y: 162 },
-    { x: 192, y: 100 },
+    { x: 252, y: 36 },
+    { x: 304, y: 108 },
+    { x: 252, y: 180 },
+    { x: 200, y: 108 },
   ];
   return (
     <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
       <GlassDefs id="dm" />
 
-      {/* destination orb behind star schema */}
-      <circle cx="250" cy="100" r="70" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.7" />
+      {/* ambient orbs — left chaos + right order */}
+      <circle cx="40" cy="100" r="60" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.45" />
+      <circle cx="252" cy="108" r="74" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.85" />
 
       {/* ── LEFT LANE — raw, messy sources ──────────────────────────── */}
       {/* CSV sheet */}
