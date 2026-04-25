@@ -288,16 +288,6 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
         </div>
       </div>
 
-      {/* image lightbox */}
-      <ImageLightbox
-        open={imageLightboxOpen}
-        onOpenChange={setImageLightboxOpen}
-        image={image}
-        imageAlt={imageAlt}
-        title={project.name}
-        hotspots={hotspots}
-      />
-
       {/* pdf lightbox */}
       {project.pdfUrl && (
         <PdfLightbox
