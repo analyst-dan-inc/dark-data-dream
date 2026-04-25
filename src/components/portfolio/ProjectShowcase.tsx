@@ -36,7 +36,6 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
   // zoom features
   const [lensActive, setLensActive] = useState(false);
   const [lensPos, setLensPos] = useState({ x: 0, y: 0 });
-  const [imageLightboxOpen, setImageLightboxOpen] = useState(false);
   const [pdfLightboxOpen, setPdfLightboxOpen] = useState(false);
   const [supportsHover, setSupportsHover] = useState(true);
 
