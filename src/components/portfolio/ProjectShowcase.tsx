@@ -149,36 +149,6 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
                 />
               )}
 
-              {/* top-right toolbar — zoom controls */}
-              <div
-                className="absolute right-3 top-3 z-20 flex items-center gap-1.5"
-                style={{ transform: "translateZ(60px)" }}
-              >
-                {supportsHover && (
-                  <button
-                    type="button"
-                    onClick={() => setLensActive((v) => !v)}
-                    aria-label={lensActive ? "Disable magnifier" : "Enable magnifier"}
-                    title={lensActive ? "Disable magnifier" : "Magnifier"}
-                    className={cn(
-                      "glass-panel inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground/85 transition-all duration-300 hover:scale-105 hover:text-foreground hover:shadow-[0_0_20px_-4px_var(--glow)]",
-                      lensActive && "border-accent-cyan/60 text-accent-cyan",
-                    )}
-                  >
-                    {lensActive ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </button>
-                )}
-                <button
-                  type="button"
-                  onClick={() => setImageLightboxOpen(true)}
-                  aria-label="Open fullscreen"
-                  title="Open fullscreen"
-                  className="glass-panel inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground/85 transition-all duration-300 hover:scale-105 hover:text-foreground hover:shadow-[0_0_20px_-4px_var(--glow)]"
-                >
-                  <Maximize2 className="h-4 w-4" />
-                </button>
-              </div>
-
               {/* explore hint — bottom-right badge */}
               <div
                 className="pointer-events-none absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-background/70 px-2.5 py-1 text-[10px] uppercase tracking-[0.3em] text-foreground/85 backdrop-blur-md"
