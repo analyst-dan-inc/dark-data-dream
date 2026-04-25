@@ -217,6 +217,7 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
             >
               {lensActive ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
             </button>
+          )}
         </div>
 
         <div className="relative flex flex-col gap-3">
