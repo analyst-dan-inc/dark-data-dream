@@ -172,6 +172,24 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
               />
             </div>
           </div>
+
+          {/* magnifier lens — rendered outside the clip so it can extend past the glass box */}
+          {lensActive && tilt.active && supportsHover && (
+            <div
+              className="pointer-events-none absolute z-40 rounded-full border-2 border-accent-cyan/70 shadow-[0_0_40px_-4px_var(--glow),inset_0_0_0_4px_oklch(0.16_0.02_260/40%)]"
+              style={{
+                width: LENS_SIZE,
+                height: LENS_SIZE,
+                left: lensPos.x - LENS_SIZE / 2,
+                top: lensPos.y - LENS_SIZE / 2,
+                backgroundImage: `url(${image})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: `${LENS_ZOOM * 100}%`,
+                backgroundPosition: `${tilt.mx}% ${tilt.my}%`,
+                transform: "translateZ(80px)",
+              }}
+            />
+          )}
         </div>
 
         {/* drop shadow plane underneath */}
