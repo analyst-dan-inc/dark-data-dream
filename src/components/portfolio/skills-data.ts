@@ -2,7 +2,6 @@ import type { ReactElement } from "react";
 import {
   DataVizIllustration,
   ETLIllustration,
-  ProgrammingIllustration,
   ReportingIllustration,
 } from "./SkillIllustrations";
 import dataVizImage from "@/assets/skills/dataviz.png";
