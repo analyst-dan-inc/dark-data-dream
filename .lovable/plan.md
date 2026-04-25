@@ -1,50 +1,45 @@
-# Add SVG illustration — Data Preparation & Modeling
+## Diagnosis
 
-## Goal
-Give the **Data Preparation & Modeling** card its own visual identity, instead of reusing `ETLIllustration`. The new SVG should tell the story of the skill at a glance: **messy raw sources → cleaning/shaping pipeline → clean star-schema model**.
+After reviewing the code, the wiring is **correct**:
+- `DataModelingIllustration` is exported from `src/components/portfolio/SkillIllustrations.tsx` (line 318).
+- It is imported and assigned to the `data-prep-modeling` skill in `skills-data.ts` (lines 3 + 221).
+- `SkillsCarousel` renders `<Illustration />` for every skill (line 77).
 
-## Design concept — `DataModelingIllustration`
-Three stacked horizontal "lanes" inside the same 320×200 glass viewBox used by the other illustrations, so it sits visually consistent with `DataVizIllustration`, `ReportingIllustration`, and `ETLIllustration`.
+So the illustration *is* in the DOM — but the current star-schema design likely renders too faintly / sparsely against the dark glass card, especially the four small "DIM" tables at the edges of the viewBox. The previous tweak rounds didn't decisively fix the perceived emptiness.
 
-1. **Left lane — Raw sources (chaos)**
-   - 3 small glass tiles representing heterogeneous inputs: a **CSV** sheet (grid of tiny cells), an **API** brace `{ }`, and a **DB** cylinder.
-   - Slightly tilted / uneven — visual hint of "messy".
-   - Tiny red/amber dots on a couple of cells = data quality issues.
+## Plan
 
-2. **Middle lane — Transformation pipeline**
-   - A horizontal flow with two glass "gear/funnel" nodes connected by a dashed animated stroke (reusing the existing `animate-pulse-glow` / dashed-stroke language from `ETLIllustration`).
-   - Small floating particles travel along the line (static SVG, animation-delay staggered) to suggest rows being processed.
-   - Micro-labels: `clean` and `shape` in tiny uppercase tracking — matches the typographic voice used elsewhere (`Space Grotesk`, 10–12px).
+Replace the body of `DataModelingIllustration` in `src/components/portfolio/SkillIllustrations.tsx` with a **simpler, denser, higher-contrast composition** that visually matches the weight of `DataVizIllustration` and `ProgrammingIllustration`.
 
-3. **Right lane — Star-schema model (order)**
-   - A central **fact table** rectangle (glass + cyan stroke) surrounded by 4 smaller **dimension tables** connected by thin straight lines = classic star schema silhouette.
-   - Each table shows 2–3 horizontal lines as "columns".
-   - Subtle radial orb behind the star to make it feel like the "destination of clarity".
+### New composition (single 320×200 viewBox)
 
-## Visual language (consistent with existing illustrations)
-- Reuses the same `<GlassDefs id="dm" />` pattern (glass gradient, stroke gradient, glow gradient, orb radial, blur filter).
-- Same color tokens: `oklch(0.82 0.13 200)` cyan + `oklch(0.7 0.18 285)` violet accents, `oklch(1 0 0 / …)` whites for glass.
-- Same animations already in the codebase: `animate-pulse-glow`, `animate-float-slow`.
-- Same 320×200 viewBox + `h-full w-full` sizing so it slots into the card unchanged.
+A **central glass "table" stack** flanked by **flowing data streams** — clearer metaphor for "preparation & modeling":
 
-## Files to change
+1. **Background** — large violet→cyan glow orb (high opacity 0.85) + dashed orbit ring, identical pattern to ProgrammingIllustration so the card reads as part of the same family.
+2. **Left side — raw data streams**: 3 horizontal "data flow" lines made of small dashes/dots in cyan, suggesting incoming raw rows. Each line ends in a small glass chip labeled `CSV`, `API`, `DB`.
+3. **Center — the model**: a tall stacked "table" card (glass panel, ~110×130) with:
+   - a bold cyan header bar labeled `MODEL`
+   - 5 column rows with key-icon dots (cyan + violet) on the left
+   - a subtle inner divider showing "fact / dim" split
+   - a glowing pulse dot on the header
+4. **Right side — clean output**: 3 short "polished" bars (solid glass with cyan top-glow), suggesting the modeled output ready for BI.
+5. **Connector arrows** (dashed, cyan→violet gradient stroke) from each raw stream into the model, and from the model out to the output bars, with `animate-pulse-glow` particles travelling along them.
 
-### 1. `src/components/portfolio/SkillIllustrations.tsx`
-- Add a new exported component `DataModelingIllustration()` implementing the three-lane composition above.
-- Keep all existing illustrations untouched.
+### Why this will be visible
 
-### 2. `src/components/portfolio/skills-data.ts`
-- Update the import line to also bring in `DataModelingIllustration`.
-- For the `data-prep-modeling` skill entry, replace `Illustration: ETLIllustration` with `Illustration: DataModelingIllustration`.
-- Leave all other skill entries (Dashboarding, Reporting) untouched — they keep their current illustrations.
-- `ETLIllustration` stays exported so it remains available if needed later.
+- Uses the **same primitives** (GlassDefs gradients, oklch tokens, animate-pulse-glow) already proven to render on the other cards.
+- A single large central element (≥110px tall) guarantees the card has a clear focal point instead of small scattered tables that read as empty space.
+- Stroke widths ≥1.6 and fill opacities ≥0.35, matching `DataVizIllustration` density.
+- Stays within the safe 20–300 / 20–180 area of the viewBox so nothing gets clipped by the card's padding.
 
-## Out of scope
-- No changes to `SkillsCarousel`, the skill detail route, or the skill copy/highlights/tools.
-- No new assets, no PNG/JPG — pure inline SVG, matching the rest of the file.
-- No animation/CSS additions in `styles.css` — only reuse existing utility classes.
+### Files touched
 
-## Acceptance check
-- The Data Preparation & Modeling card on `/` shows a distinct, on-brand glass SVG (raw → pipeline → star schema) instead of the current ETL nodes.
-- Dashboarding and Reporting cards look identical to before.
-- No TypeScript errors; build stays clean.
+- **Update only**: `src/components/portfolio/SkillIllustrations.tsx` — replace the `DataModelingIllustration` function body. The `<GlassDefs id="dm" />` defs stay; only the visual elements change.
+
+No changes to `skills-data.ts`, `SkillsCarousel.tsx`, or any route — wiring is already correct.
+
+### Acceptance
+
+- The third carousel card ("Data Preparation & Modeling") shows a dense, clearly visible illustration with a central model panel, flow arrows, and labeled raw/output chips.
+- Visual weight matches the other two cards (Dashboarding / Reporting).
+- No TypeScript errors; no other components affected.
