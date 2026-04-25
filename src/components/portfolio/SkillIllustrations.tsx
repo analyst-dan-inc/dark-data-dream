@@ -316,304 +316,173 @@ export function ProgrammingIllustration() {
 }
 
 export function DataModelingIllustration() {
-  // Star schema: fact at (262, 100), 4 dimensions N/S/E/W around it
-  const factCx = 262;
-  const factCy = 100;
-  const dims = [
-    { x: 262, y: 38 },  // top
-    { x: 308, y: 100 }, // right
-    { x: 262, y: 162 }, // bottom
-    { x: 216, y: 100 }, // left
-  ];
   return (
     <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
       <GlassDefs id="dm" />
 
-      {/* ambient orbs — left (chaos) & right (clarity) */}
-      <circle cx="50" cy="100" r="60" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.5" />
-      <circle cx="262" cy="100" r="78" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.85" />
+      <circle cx="88" cy="92" r="68" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.55" />
+      <circle cx="240" cy="120" r="54" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.4" />
 
-      {/* ── LEFT — RAW SOURCES (3 stacked, slightly tilted) ───────── */}
-      {/* CSV sheet */}
-      <g transform="translate(14 22) rotate(-6)">
+      {/* main spreadsheet */}
+      <g transform="translate(24 22)">
         <rect
-          width="58"
-          height="42"
-          rx="6"
-          fill="oklch(1 0 0 / 10%)"
-          stroke="oklch(0.82 0.13 200 / 60%)"
-          strokeWidth="1.4"
+          width="272"
+          height="156"
+          rx="14"
+          fill="url(#dm-glass)"
+          stroke="oklch(1 0 0 / 14%)"
+          strokeWidth="1"
         />
-        {[0, 1, 2].map((r) => (
+
+        {/* top bar */}
+        <rect width="272" height="22" rx="14" fill="oklch(1 0 0 / 7%)" />
+        <circle cx="14" cy="11" r="3" fill="oklch(0.82 0.13 200)" />
+        <circle cx="26" cy="11" r="3" fill="oklch(0.7 0.18 285)" />
+        <rect x="42" y="7" width="68" height="8" rx="3" fill="oklch(1 0 0 / 16%)" />
+        <rect x="226" y="7" width="34" height="8" rx="3" fill="oklch(0.82 0.13 200 / 22%)" />
+
+        {/* row index strip */}
+        <rect x="0" y="22" width="22" height="134" fill="oklch(1 0 0 / 5%)" />
+
+        {/* highlighted modeled area */}
+        <rect
+          x="74"
+          y="46"
+          width="140"
+          height="82"
+          rx="8"
+          fill="oklch(0.82 0.13 200 / 12%)"
+          stroke="oklch(0.82 0.13 200 / 55%)"
+          strokeWidth="1.2"
+        />
+
+        {/* header row */}
+        <rect x="22" y="22" width="250" height="20" fill="oklch(1 0 0 / 5%)" />
+        {["A", "B", "C", "D", "E"].map((label, i) => (
+          <text
+            key={label}
+            x={48 + i * 46}
+            y="35"
+            textAnchor="middle"
+            fontFamily="Space Grotesk, sans-serif"
+            fontSize="9"
+            fontWeight="700"
+            fill={i === 2 ? "oklch(0.92 0.13 200)" : "oklch(1 0 0 / 70%)"}
+          >
+            {label}
+          </text>
+        ))}
+
+        {/* grid */}
+        {[0, 1, 2, 3, 4, 5].map((r) => (
           <line
-            key={r}
-            x1="5"
-            x2="53"
-            y1={12 + r * 10}
-            y2={12 + r * 10}
-            stroke="oklch(1 0 0 / 30%)"
+            key={`r-${r}`}
+            x1="22"
+            x2="272"
+            y1={42 + r * 19}
+            y2={42 + r * 19}
+            stroke="oklch(1 0 0 / 10%)"
             strokeWidth="1"
           />
         ))}
-        {[0, 1, 2].map((c) => (
+        {[0, 1, 2, 3, 4, 5].map((c) => (
           <line
-            key={c}
-            x1={5 + (c + 1) * 13}
-            x2={5 + (c + 1) * 13}
-            y1="4"
-            y2="38"
-            stroke="oklch(1 0 0 / 24%)"
+            key={`c-${c}`}
+            x1={22 + c * 50}
+            x2={22 + c * 50}
+            y1="22"
+            y2="156"
+            stroke="oklch(1 0 0 / 10%)"
             strokeWidth="1"
           />
         ))}
-        <circle cx="42" cy="16" r="2.6" fill="oklch(0.7 0.2 25)" />
-      </g>
 
-      {/* API braces tile */}
-      <g transform="translate(20 78) rotate(4)" className="animate-float-slow">
-        <rect
-          width="52"
-          height="38"
-          rx="6"
-          fill="oklch(1 0 0 / 10%)"
-          stroke="oklch(0.7 0.18 285 / 65%)"
-          strokeWidth="1.4"
-        />
-        <text
-          x="26"
-          y="26"
-          textAnchor="middle"
-          fontFamily="Space Grotesk, sans-serif"
-          fontSize="20"
-          fontWeight="700"
-          fill="oklch(0.95 0.12 200)"
-        >
-          {`{ }`}
-        </text>
-      </g>
+        {/* row numbers */}
+        {[1, 2, 3, 4, 5, 6].map((n, i) => (
+          <text
+            key={n}
+            x="11"
+            y={54 + i * 19}
+            textAnchor="middle"
+            fontFamily="Space Grotesk, sans-serif"
+            fontSize="8"
+            fill="oklch(1 0 0 / 55%)"
+          >
+            {n}
+          </text>
+        ))}
 
-      {/* DB cylinder */}
-      <g transform="translate(14 130) rotate(-3)">
-        <ellipse
-          cx="26"
-          cy="6"
-          rx="24"
-          ry="5"
-          fill="oklch(1 0 0 / 14%)"
-          stroke="oklch(0.82 0.13 200 / 60%)"
-          strokeWidth="1.4"
-        />
-        <path
-          d="M2 6 L2 34 Q2 39 26 39 Q50 39 50 34 L50 6"
-          fill="oklch(1 0 0 / 10%)"
-          stroke="oklch(0.82 0.13 200 / 60%)"
-          strokeWidth="1.4"
-        />
-        <ellipse cx="26" cy="14" rx="24" ry="5" fill="none" stroke="oklch(1 0 0 / 26%)" />
-        <ellipse cx="26" cy="22" rx="24" ry="5" fill="none" stroke="oklch(1 0 0 / 20%)" />
-        <circle cx="44" cy="2" r="2.6" fill="oklch(0.78 0.16 95)" />
-      </g>
-
-      {/* ── MIDDLE — TRANSFORMATION PIPELINE ──────────────────────── */}
-      {/* converging flow lines from the 3 sources into CLEAN node */}
-      <path
-        d="M76 44 C 100 60, 120 80, 130 100"
-        fill="none"
-        stroke="url(#dm-stroke)"
-        strokeWidth="1.6"
-        strokeDasharray="3 4"
-        strokeLinecap="round"
-        opacity="0.85"
-      />
-      <path
-        d="M78 100 L 130 100"
-        fill="none"
-        stroke="url(#dm-stroke)"
-        strokeWidth="1.6"
-        strokeDasharray="3 4"
-        strokeLinecap="round"
-        opacity="0.85"
-      />
-      <path
-        d="M76 156 C 100 142, 120 120, 130 100"
-        fill="none"
-        stroke="url(#dm-stroke)"
-        strokeWidth="1.6"
-        strokeDasharray="3 4"
-        strokeLinecap="round"
-        opacity="0.85"
-      />
-
-      {/* CLEAN funnel node */}
-      <g transform="translate(116 86)">
-        <circle
-          cx="14"
-          cy="14"
-          r="18"
-          fill="oklch(1 0 0 / 8%)"
-          stroke="oklch(0.82 0.13 200 / 70%)"
-          strokeWidth="1.6"
-        />
-        <path
-          d="M3 6 H25 L18 16 V24 L10 24 V16 Z"
-          fill="oklch(0.82 0.13 200 / 50%)"
-          stroke="oklch(0.95 0.12 200 / 95%)"
-          strokeWidth="1.4"
-        />
-      </g>
-
-      {/* SHAPE hex/gear node */}
-      <g transform="translate(160 86)">
-        <circle
-          cx="14"
-          cy="14"
-          r="18"
-          fill="oklch(1 0 0 / 8%)"
-          stroke="oklch(0.7 0.18 285 / 70%)"
-          strokeWidth="1.6"
-        />
-        <polygon
-          points="14,2 24,7.5 24,20.5 14,26 4,20.5 4,7.5"
-          fill="oklch(0.7 0.18 285 / 40%)"
-          stroke="oklch(0.88 0.14 285)"
-          strokeWidth="1.4"
-        />
-        <circle cx="14" cy="14" r="3.2" fill="oklch(0.95 0.12 200)" />
-      </g>
-
-      {/* link CLEAN → SHAPE */}
-      <path
-        d="M150 100 L 168 100"
-        fill="none"
-        stroke="url(#dm-stroke)"
-        strokeWidth="1.6"
-        strokeDasharray="3 4"
-        strokeLinecap="round"
-      />
-
-      {/* labels */}
-      <text
-        x="130"
-        y="76"
-        textAnchor="middle"
-        fontFamily="Space Grotesk, sans-serif"
-        fontSize="7"
-        letterSpacing="2.2"
-        fill="oklch(0.92 0.13 200 / 95%)"
-      >
-        CLEAN
-      </text>
-      <text
-        x="174"
-        y="76"
-        textAnchor="middle"
-        fontFamily="Space Grotesk, sans-serif"
-        fontSize="7"
-        letterSpacing="2.2"
-        fill="oklch(0.85 0.16 285 / 95%)"
-      >
-        SHAPE
-      </text>
-
-      {/* travelling particles along the flow */}
-      {[
-        { cx: 100, cy: 70, d: 0 },
-        { cx: 110, cy: 100, d: 0.3 },
-        { cx: 100, cy: 130, d: 0.6 },
-        { cx: 158, cy: 100, d: 0.9 },
-        { cx: 196, cy: 100, d: 1.2 },
-      ].map((p, i) => (
-        <circle
-          key={i}
-          cx={p.cx}
-          cy={p.cy}
-          r="2.4"
-          fill="oklch(0.95 0.12 200)"
-          className="animate-pulse-glow"
-          style={{ animationDelay: `${p.d}s` }}
-        />
-      ))}
-
-      {/* link SHAPE → STAR */}
-      <path
-        d="M194 100 L 216 100"
-        fill="none"
-        stroke="url(#dm-stroke)"
-        strokeWidth="2"
-        strokeDasharray="3 4"
-        strokeLinecap="round"
-      />
-
-      {/* ── RIGHT — STAR SCHEMA ───────────────────────────────────── */}
-      {/* connector lines fact ↔ dims */}
-      {dims.map((d, i) => (
-        <line
-          key={i}
-          x1={factCx}
-          y1={factCy}
-          x2={d.x}
-          y2={d.y}
-          stroke="oklch(0.82 0.13 200 / 65%)"
-          strokeWidth="1.4"
-          strokeDasharray="2 3"
-        />
-      ))}
-
-      {/* fact table */}
-      <g transform={`translate(${factCx - 25} ${factCy - 23})`}>
-        <rect
-          width="50"
-          height="46"
-          rx="6"
-          fill="oklch(1 0 0 / 14%)"
-          stroke="oklch(0.82 0.13 200 / 95%)"
-          strokeWidth="2"
-        />
-        <rect width="50" height="13" rx="6" fill="oklch(0.82 0.13 200 / 60%)" />
-        <text
-          x="25"
-          y="10"
-          textAnchor="middle"
-          fontFamily="Space Grotesk, sans-serif"
-          fontSize="7"
-          fontWeight="700"
-          letterSpacing="1.6"
-          fill="oklch(0.98 0.02 240)"
-        >
-          FACT
-        </text>
-        <line x1="5" x2="45" y1="20" y2="20" stroke="oklch(1 0 0 / 50%)" strokeWidth="1" />
-        <line x1="5" x2="45" y1="27" y2="27" stroke="oklch(1 0 0 / 40%)" strokeWidth="1" />
-        <line x1="5" x2="38" y1="34" y2="34" stroke="oklch(1 0 0 / 32%)" strokeWidth="1" />
-        <line x1="5" x2="42" y1="41" y2="41" stroke="oklch(1 0 0 / 28%)" strokeWidth="1" />
-      </g>
-
-      {/* dimension tables */}
-      {dims.map((d, i) => (
-        <g key={i} transform={`translate(${d.x - 16} ${d.y - 12})`}>
+        {/* simplified cell content */}
+        {[
+          { x: 30, y: 50, w: 30 },
+          { x: 78, y: 50, w: 22 },
+          { x: 126, y: 50, w: 34 },
+          { x: 176, y: 50, w: 28 },
+          { x: 226, y: 50, w: 24 },
+          { x: 30, y: 69, w: 24 },
+          { x: 78, y: 69, w: 30 },
+          { x: 126, y: 69, w: 24 },
+          { x: 176, y: 69, w: 36 },
+          { x: 226, y: 69, w: 18 },
+          { x: 30, y: 88, w: 18 },
+          { x: 78, y: 88, w: 26 },
+          { x: 126, y: 88, w: 42 },
+          { x: 176, y: 88, w: 22 },
+          { x: 226, y: 88, w: 30 },
+          { x: 30, y: 107, w: 28 },
+          { x: 78, y: 107, w: 32 },
+          { x: 126, y: 107, w: 24 },
+          { x: 176, y: 107, w: 30 },
+          { x: 226, y: 107, w: 20 },
+          { x: 30, y: 126, w: 22 },
+          { x: 78, y: 126, w: 30 },
+          { x: 126, y: 126, w: 36 },
+          { x: 176, y: 126, w: 24 },
+          { x: 226, y: 126, w: 28 },
+        ].map((cell, i) => (
           <rect
-            width="32"
-            height="24"
-            rx="4"
-            fill="oklch(1 0 0 / 12%)"
-            stroke="oklch(0.7 0.18 285 / 80%)"
-            strokeWidth="1.3"
+            key={i}
+            x={cell.x}
+            y={cell.y}
+            width={cell.w}
+            height="5"
+            rx="2.5"
+            fill={
+              cell.x >= 122 && cell.x <= 182
+                ? "oklch(0.82 0.13 200 / 45%)"
+                : "oklch(1 0 0 / 20%)"
+            }
           />
-          <rect width="32" height="7" rx="4" fill="oklch(0.7 0.18 285 / 60%)" />
-          <line x1="4" x2="28" y1="12" y2="12" stroke="oklch(1 0 0 / 38%)" strokeWidth="1" />
-          <line x1="4" x2="22" y1="17" y2="17" stroke="oklch(1 0 0 / 30%)" strokeWidth="1" />
-          <line x1="4" x2="25" y1="21" y2="21" stroke="oklch(1 0 0 / 24%)" strokeWidth="1" />
-        </g>
-      ))}
+        ))}
 
-      {/* center pulse on fact */}
-      <circle
-        cx={factCx}
-        cy={factCy}
-        r="3.5"
-        fill="oklch(0.95 0.12 200)"
-        className="animate-pulse-glow"
-      />
+        {/* issue markers on raw cells */}
+        <circle cx="95" cy="72" r="2.5" fill="oklch(0.7 0.2 25)" />
+        <circle cx="48" cy="91" r="2.5" fill="oklch(0.78 0.16 95)" />
+
+        {/* formula / model chip */}
+        <g transform="translate(176 120)" className="animate-float-slow">
+          <rect
+            width="76"
+            height="24"
+            rx="8"
+            fill="oklch(0.7 0.18 285 / 18%)"
+            stroke="oklch(0.7 0.18 285 / 55%)"
+            strokeWidth="1.2"
+          />
+          <text
+            x="38"
+            y="16"
+            textAnchor="middle"
+            fontFamily="Space Grotesk, sans-serif"
+            fontSize="8"
+            fontWeight="700"
+            letterSpacing="1.5"
+            fill="oklch(0.9 0.14 285)"
+          >
+            MODEL READY
+          </text>
+        </g>
+      </g>
     </svg>
   );
 }
