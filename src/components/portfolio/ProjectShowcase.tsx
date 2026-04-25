@@ -132,23 +132,6 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent-cyan/5 via-transparent to-accent-violet/10 mix-blend-screen" />
               <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
 
-              {/* magnifier lens */}
-              {lensActive && tilt.active && supportsHover && (
-                <div
-                  className="pointer-events-none absolute z-30 rounded-full border-2 border-accent-cyan/70 shadow-[0_0_40px_-4px_var(--glow),inset_0_0_0_4px_oklch(0.16_0.02_260/40%)]"
-                  style={{
-                    width: LENS_SIZE,
-                    height: LENS_SIZE,
-                    left: lensPos.x - LENS_SIZE / 2,
-                    top: lensPos.y - LENS_SIZE / 2,
-                    backgroundImage: `url(${image})`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: `${LENS_ZOOM * 100}%`,
-                    backgroundPosition: `${tilt.mx}% ${tilt.my}%`,
-                  }}
-                />
-              )}
-
               {/* explore hint — bottom-right badge */}
               <div
                 className="pointer-events-none absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-background/70 px-2.5 py-1 text-[10px] uppercase tracking-[0.3em] text-foreground/85 backdrop-blur-md"
@@ -189,6 +172,24 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
               />
             </div>
           </div>
+
+          {/* magnifier lens — rendered outside the clip so it can extend past the glass box */}
+          {lensActive && tilt.active && supportsHover && (
+            <div
+              className="pointer-events-none absolute z-40 rounded-full border-2 border-accent-cyan/70 shadow-[0_0_40px_-4px_var(--glow),inset_0_0_0_4px_oklch(0.16_0.02_260/40%)]"
+              style={{
+                width: LENS_SIZE,
+                height: LENS_SIZE,
+                left: lensPos.x - LENS_SIZE / 2,
+                top: lensPos.y - LENS_SIZE / 2,
+                backgroundImage: `url(${image})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: `${LENS_ZOOM * 100}%`,
+                backgroundPosition: `${tilt.mx}% ${tilt.my}%`,
+                transform: "translateZ(80px)",
+              }}
+            />
+          )}
         </div>
 
         {/* drop shadow plane underneath */}
