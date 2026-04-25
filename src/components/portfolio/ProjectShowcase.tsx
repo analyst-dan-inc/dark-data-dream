@@ -4,7 +4,6 @@ import {
   Eye,
   EyeOff,
   FileText,
-  Maximize2,
   RotateCcw,
   Sparkles,
   X,
