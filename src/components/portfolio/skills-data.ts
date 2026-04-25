@@ -5,6 +5,7 @@ import {
   ReportingIllustration,
 } from "./SkillIllustrations";
 import dataVizImage from "@/assets/skills/dataviz.png";
+import reportingImage from "@/assets/skills/reporting.jpg";
 
 export type ProjectHotspot = {
   /** Position as % of the image (0–100) */
@@ -130,6 +131,71 @@ export const SKILLS: Skill[] = [
     ],
     tools: ["Power BI", "Excel", "SQL", "Python", "Sheets"],
     Illustration: ReportingIllustration,
+    image: reportingImage,
+    imageAlt:
+      "Olist BI report — cover, contexte, dictionnaire des variables and analyse exploratoire pages",
+    project: {
+      name: "Olist — Rapport d'Informatique Décisionnelle",
+      role: "Data Analyst · Auteur du rapport",
+      context:
+        "Rapport BI complet sur la marketplace e-commerce brésilienne Olist — du cadrage au diagnostic stratégique, conçu pour servir de référence aux équipes Pilotage & Analyse. Aperçu limité aux 5 premières pages.",
+      stack: ["Power BI", "Python", "SQL", "Pareto", "Storytelling"],
+      outcomes: [
+        "12–13 catégories identifiées comme cœur du chiffre d'affaires (80% via Pareto)",
+        "Signal de retard de livraison détecté sur 8,11% des commandes",
+        "Synthèse adoptée comme support de décision pour les revues mensuelles",
+      ],
+      hotspots: [
+        {
+          x: 12,
+          y: 50,
+          depth: 0.55,
+          label: "Page de garde",
+          detail:
+            "Identité visuelle du rapport — Février 2026, étude E-Commerce Olist, signée Daniel Incama (M2 Économie Appliquée).",
+        },
+        {
+          x: 35,
+          y: 30,
+          depth: 0.7,
+          label: "Contexte & sources",
+          detail:
+            "Cadrage du modèle plateforme Olist + dataset Kaggle (~100 000 commandes Brésil 2016–2018, 9 tables relationnelles).",
+        },
+        {
+          x: 38,
+          y: 78,
+          depth: 0.45,
+          label: "Schéma relationnel",
+          detail:
+            "Cartographie des jointures entre commandes, paiements, produits, vendeurs et géolocalisation.",
+        },
+        {
+          x: 60,
+          y: 45,
+          depth: 0.8,
+          label: "Dictionnaire des variables",
+          detail:
+            "52 champs typés (ID, catégoriels, datetime, montants…) — la base d'un modèle sémantique propre et documenté.",
+        },
+        {
+          x: 82,
+          y: 32,
+          depth: 0.6,
+          label: "Profil Olist — KPIs",
+          detail:
+            "99 421 clients · 3 095 vendeurs · note moyenne 4,09/5 · 8,11% de retards. Indicateurs clés en un coup d'œil.",
+        },
+        {
+          x: 88,
+          y: 78,
+          depth: 0.4,
+          label: "Cadrage stratégique",
+          detail:
+            "Transition de la lecture descriptive vers l'analyse de performance : moteurs de CA, vendeurs, satisfaction.",
+        },
+      ],
+    },
   },
   {
     id: "data-prep-modeling",
