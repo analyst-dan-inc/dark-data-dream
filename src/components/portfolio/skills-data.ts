@@ -1,8 +1,6 @@
 import type { ReactElement } from "react";
 import {
-  DataModelingIllustration,
   DataVizIllustration,
-  ETLIllustration,
   ReportingIllustration,
 } from "./SkillIllustrations";
 import dataVizImage from "@/assets/skills/dataviz.png";
@@ -203,22 +201,6 @@ export const SKILLS: Skill[] = [
         },
       ],
     },
-  },
-  {
-    id: "data-prep-modeling",
-    slug: "data-preparation-modeling",
-    name: "Data Preparation & Modeling",
-    description:
-      "Shaping raw, messy sources into clean, well-modeled datasets — consolidation, transformation and semantic models built for reliable analytics.",
-    long: "Clean, well-modeled data is the foundation of every good decision. I consolidate raw sources, enforce explicit business rules in transformations, and design semantic models built for analytics — star schemas, clear grain, documented measures. Every step is observable: schema checks, freshness monitors and tests that fail loudly before bad data reaches a dashboard.",
-    highlights: [
-      "Source consolidation across APIs, files & databases",
-      "Explicit, testable transformation logic",
-      "Star-schema & semantic models tuned for BI",
-      "Schema, freshness & quality monitoring",
-    ],
-    tools: ["Python", "SQL", "Power BI", "DAX", "dbt"],
-    Illustration: DataModelingIllustration,
   },
 ];
 
