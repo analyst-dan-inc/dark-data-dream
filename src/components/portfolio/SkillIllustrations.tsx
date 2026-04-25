@@ -333,44 +333,44 @@ export function DataModelingIllustration() {
 
       {/* ── LEFT LANE — raw, messy sources ──────────────────────────── */}
       {/* CSV sheet */}
-      <g transform="translate(14 28) rotate(-6)">
-        <rect width="46" height="36" rx="4" fill="url(#dm-glass)" stroke="oklch(1 0 0 / 18%)" />
-        {[0, 1, 2, 3].map((r) => (
+      <g transform="translate(10 22) rotate(-7)">
+        <rect width="54" height="44" rx="5" fill="url(#dm-glass)" stroke="oklch(1 0 0 / 35%)" strokeWidth="1.2" />
+        {[0, 1, 2, 3, 4].map((r) => (
           <line
             key={r}
-            x1="3"
-            x2="43"
+            x1="4"
+            x2="50"
             y1={9 + r * 7}
             y2={9 + r * 7}
-            stroke="oklch(1 0 0 / 14%)"
+            stroke="oklch(1 0 0 / 28%)"
             strokeWidth="1"
           />
         ))}
         {[0, 1, 2].map((c) => (
           <line
             key={c}
-            x1={3 + (c + 1) * 11}
-            x2={3 + (c + 1) * 11}
+            x1={4 + (c + 1) * 12.5}
+            x2={4 + (c + 1) * 12.5}
             y1="3"
-            y2="33"
-            stroke="oklch(1 0 0 / 14%)"
+            y2="41"
+            stroke="oklch(1 0 0 / 28%)"
             strokeWidth="1"
           />
         ))}
         {/* quality issue dot */}
-        <circle cx="32" cy="13" r="2" fill="oklch(0.7 0.2 25)" opacity="0.85" />
+        <circle cx="40" cy="14" r="2.4" fill="oklch(0.7 0.2 25)" opacity="0.95" />
       </g>
 
       {/* API braces tile */}
-      <g transform="translate(20 78) rotate(4)">
-        <rect width="40" height="34" rx="4" fill="url(#dm-glass)" stroke="oklch(1 0 0 / 18%)" />
+      <g transform="translate(18 78) rotate(5)">
+        <rect width="46" height="38" rx="5" fill="url(#dm-glass)" stroke="oklch(0.82 0.13 200 / 55%)" strokeWidth="1.2" />
         <text
-          x="20"
-          y="23"
+          x="23"
+          y="26"
           textAnchor="middle"
           fontFamily="Space Grotesk, sans-serif"
-          fontSize="14"
-          fontWeight="600"
+          fontSize="16"
+          fontWeight="700"
           fill="oklch(0.92 0.12 200)"
         >
           {`{ }`}
@@ -378,17 +378,18 @@ export function DataModelingIllustration() {
       </g>
 
       {/* DB cylinder */}
-      <g transform="translate(16 130) rotate(-3)">
-        <ellipse cx="22" cy="6" rx="20" ry="5" fill="url(#dm-glass)" stroke="oklch(1 0 0 / 18%)" />
+      <g transform="translate(12 134) rotate(-4)">
+        <ellipse cx="24" cy="6" rx="22" ry="5.5" fill="url(#dm-glass)" stroke="oklch(1 0 0 / 35%)" strokeWidth="1.2" />
         <path
-          d="M2 6 L2 30 Q2 36 22 36 Q42 36 42 30 L42 6"
+          d="M2 6 L2 32 Q2 38 24 38 Q46 38 46 32 L46 6"
           fill="url(#dm-glass)"
-          stroke="oklch(1 0 0 / 18%)"
+          stroke="oklch(1 0 0 / 35%)"
+          strokeWidth="1.2"
         />
-        <ellipse cx="22" cy="14" rx="20" ry="5" fill="none" stroke="oklch(1 0 0 / 14%)" />
-        <ellipse cx="22" cy="22" rx="20" ry="5" fill="none" stroke="oklch(1 0 0 / 14%)" />
+        <ellipse cx="24" cy="15" rx="22" ry="5.5" fill="none" stroke="oklch(1 0 0 / 25%)" />
+        <ellipse cx="24" cy="24" rx="22" ry="5.5" fill="none" stroke="oklch(1 0 0 / 25%)" />
         {/* quality issue dot */}
-        <circle cx="36" cy="3" r="2" fill="oklch(0.78 0.16 95)" opacity="0.85" />
+        <circle cx="40" cy="3" r="2.4" fill="oklch(0.78 0.16 95)" opacity="0.95" />
       </g>
 
       {/* ── MIDDLE LANE — transformation pipeline ────────────────────── */}
