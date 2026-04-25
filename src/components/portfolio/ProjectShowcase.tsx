@@ -59,34 +59,33 @@ export function ProjectShowcase({ image, imageAlt, project }: ProjectShowcasePro
             }}
           >
             <div className="relative h-full w-full overflow-hidden rounded-[15px] bg-black/40 shadow-[0_40px_120px_-30px_var(--glow)]">
-              {/* image — sits behind glass, lifts to clear on hover */}
+              {/* image — fully visible, subtle parallax zoom on hover */}
               <img
                 src={image}
                 alt={imageAlt}
                 loading="lazy"
                 draggable={false}
-                className="absolute inset-0 h-full w-full scale-105 object-cover blur-[5px] saturate-[0.85] brightness-90 transition-all duration-700 ease-out group-hover:scale-110 group-hover:blur-0 group-hover:saturate-100 group-hover:brightness-100"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                style={{ transform: "translateZ(0px)" }}
               />
               {/* dynamic light sweep follows cursor */}
               <div
                 className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                 style={{
-                  background: `radial-gradient(circle at ${tilt.mx}% ${tilt.my}%, oklch(0.82 0.13 200 / 22%), transparent 45%)`,
+                  background: `radial-gradient(circle at ${tilt.mx}% ${tilt.my}%, oklch(0.82 0.13 200 / 18%), transparent 50%)`,
                 }}
               />
-              {/* glass overlays — clear on hover */}
-              <div className="pointer-events-none absolute inset-0 grid-bg opacity-30 transition-opacity duration-700 group-hover:opacity-10" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-background/55 via-background/25 to-background/65 backdrop-blur-md transition-all duration-700 group-hover:from-background/5 group-hover:via-transparent group-hover:to-background/10 group-hover:backdrop-blur-0" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent-cyan/15 via-transparent to-accent-violet/20 mix-blend-screen transition-opacity duration-700 group-hover:opacity-30" />
+              {/* very light tint to keep brand cohesion — never blurs the image */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent-cyan/5 via-transparent to-accent-violet/10 mix-blend-screen" />
               <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
 
-              {/* hover hint — top-left badge */}
+              {/* explore hint — bottom-right badge */}
               <div
-                className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-background/50 px-2.5 py-1 text-[10px] uppercase tracking-[0.3em] text-foreground/80 backdrop-blur-md transition-all duration-500 group-hover:-translate-y-1 group-hover:opacity-0"
+                className="pointer-events-none absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-background/70 px-2.5 py-1 text-[10px] uppercase tracking-[0.3em] text-foreground/85 backdrop-blur-md"
                 style={{ transform: "translateZ(60px)" }}
               >
                 <Sparkles className="h-3 w-3 text-accent-cyan" />
-                Hover to explore
+                Hover the dots
               </div>
 
               {/* hotspots — appear on hover, parallax by depth */}
