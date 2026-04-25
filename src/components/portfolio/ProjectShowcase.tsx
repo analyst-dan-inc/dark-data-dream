@@ -506,19 +506,85 @@ function ImageLightbox({
               draggable={false}
               className="h-full w-full object-contain"
             />
-            {/* hotspots overlay — positioned the same way relative to the image */}
-            <div className="pointer-events-none absolute inset-0">
-              {hotspots.map((h, i) => (
-                <div
-                  key={h.label}
-                  className="absolute"
-                  style={{ left: `${h.x}%`, top: `${h.y}%`, transform: "translate(-50%, -50%)" }}
-                >
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-accent-cyan to-accent-violet text-[9px] font-semibold text-background ring-2 ring-background/70 shadow-[0_0_18px_var(--glow)]">
-                    {i + 1}
-                  </span>
-                </div>
-              ))}
+            {/* hotspots overlay — interactive, counter-scaled to stay readable */}
+            <div className="absolute inset-0">
+              {hotspots.map((h, i) => {
+                const isActive = activeHotspot === i;
+                const flipX = h.x > 65 ? "right" : h.x < 35 ? "left" : "center";
+                const flipY = h.y > 70 ? "top" : "bottom";
+                const tooltipPos = flipY === "top" ? "bottom-full mb-3" : "top-full mt-3";
+                const tooltipAlign =
+                  flipX === "right"
+                    ? "right-0"
+                    : flipX === "left"
+                    ? "left-0"
+                    : "left-1/2 -translate-x-1/2";
+                return (
+                  <div
+                    key={h.label}
+                    className="absolute"
+                    style={{
+                      left: `${h.x}%`,
+                      top: `${h.y}%`,
+                      transform: `translate(-50%, -50%) scale(${1 / zoom})`,
+                      transformOrigin: "center center",
+                      zIndex: isActive ? 50 : 10,
+                    }}
+                  >
+                    <button
+                      type="button"
+                      aria-label={h.label}
+                      aria-expanded={isActive}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveHotspot(isActive ? null : i);
+                      }}
+                      onMouseDown={(e) => e.stopPropagation()}
+                      className="relative flex h-7 w-7 items-center justify-center"
+                    >
+                      <span
+                        className={cn(
+                          "absolute inset-0 rounded-full border border-accent-cyan/40 transition-all duration-300",
+                          isActive ? "scale-150 border-accent-cyan/70 opacity-100" : "opacity-60",
+                        )}
+                      />
+                      <span
+                        className={cn(
+                          "relative inline-flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-semibold tabular-nums text-background ring-2 ring-background/80 shadow-[0_0_22px_var(--glow)] transition-all duration-300",
+                          isActive
+                            ? "scale-110 bg-gradient-to-br from-accent-cyan to-accent-violet"
+                            : "bg-accent-cyan",
+                        )}
+                      >
+                        {i + 1}
+                      </span>
+                    </button>
+                    <div
+                      className={cn(
+                        "pointer-events-none absolute z-50 w-60 rounded-xl border border-white/15 bg-background/95 px-3.5 py-2.5 text-left shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-all duration-300",
+                        tooltipPos,
+                        tooltipAlign,
+                        isActive
+                          ? "translate-y-0 scale-100 opacity-100"
+                          : `${flipY === "top" ? "translate-y-1" : "-translate-y-1"} scale-95 opacity-0`,
+                      )}
+                    >
+                      <div className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-br from-accent-cyan/10 via-transparent to-accent-violet/10" />
+                      <div className="relative flex items-center gap-2">
+                        <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent-cyan to-accent-violet text-[9px] font-semibold text-background">
+                          {i + 1}
+                        </span>
+                        <div className="text-[10px] uppercase tracking-[0.25em] text-accent-cyan">
+                          {h.label}
+                        </div>
+                      </div>
+                      <div className="relative mt-1.5 text-xs leading-relaxed text-foreground/90">
+                        {h.detail}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
