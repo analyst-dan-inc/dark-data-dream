@@ -316,49 +316,39 @@ export function ProgrammingIllustration() {
 }
 
 export function DataModelingIllustration() {
-  // Star-schema dimension positions around fact at (140, 230)
+  // Star schema: fact at (262, 100), 4 dimensions N/S/E/W around it
+  const factCx = 262;
+  const factCy = 100;
   const dims = [
-    { x: 140, y: 178 },
-    { x: 200, y: 230 },
-    { x: 140, y: 282 },
-    { x: 80, y: 230 },
+    { x: 262, y: 38 },  // top
+    { x: 308, y: 100 }, // right
+    { x: 262, y: 162 }, // bottom
+    { x: 216, y: 100 }, // left
   ];
   return (
-    <svg viewBox="0 0 280 360" className="h-full w-full" aria-hidden>
+    <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
       <GlassDefs id="dm" />
 
-      {/* ambient orbs — top (raw chaos) and bottom (star clarity) */}
-      <circle cx="140" cy="60" r="80" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.5" />
-      <circle cx="140" cy="240" r="100" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.8" />
+      {/* ambient orbs — left (chaos) & right (clarity) */}
+      <circle cx="50" cy="100" r="60" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.5" />
+      <circle cx="262" cy="100" r="78" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.85" />
 
-      {/* back panel */}
-      <rect
-        x="14"
-        y="18"
-        width="252"
-        height="324"
-        rx="18"
-        fill="url(#dm-glass)"
-        stroke="oklch(1 0 0 / 14%)"
-        strokeWidth="1"
-      />
-
-      {/* ── TOP — RAW SOURCES (3 tiles in a row) ───────────────────── */}
+      {/* ── LEFT — RAW SOURCES (3 stacked, slightly tilted) ───────── */}
       {/* CSV sheet */}
-      <g transform="translate(34 38) rotate(-5)">
+      <g transform="translate(14 22) rotate(-6)">
         <rect
-          width="62"
-          height="48"
+          width="58"
+          height="42"
           rx="6"
           fill="oklch(1 0 0 / 10%)"
           stroke="oklch(0.82 0.13 200 / 60%)"
           strokeWidth="1.4"
         />
-        {[0, 1, 2, 3].map((r) => (
+        {[0, 1, 2].map((r) => (
           <line
             key={r}
             x1="5"
-            x2="57"
+            x2="53"
             y1={12 + r * 10}
             y2={12 + r * 10}
             stroke="oklch(1 0 0 / 30%)"
@@ -368,33 +358,33 @@ export function DataModelingIllustration() {
         {[0, 1, 2].map((c) => (
           <line
             key={c}
-            x1={5 + (c + 1) * 14}
-            x2={5 + (c + 1) * 14}
+            x1={5 + (c + 1) * 13}
+            x2={5 + (c + 1) * 13}
             y1="4"
-            y2="44"
+            y2="38"
             stroke="oklch(1 0 0 / 24%)"
             strokeWidth="1"
           />
         ))}
-        <circle cx="46" cy="18" r="2.8" fill="oklch(0.7 0.2 25)" />
+        <circle cx="42" cy="16" r="2.6" fill="oklch(0.7 0.2 25)" />
       </g>
 
       {/* API braces tile */}
-      <g transform="translate(112 36) rotate(3)" className="animate-float-slow">
+      <g transform="translate(20 78) rotate(4)" className="animate-float-slow">
         <rect
-          width="56"
-          height="48"
+          width="52"
+          height="38"
           rx="6"
           fill="oklch(1 0 0 / 10%)"
           stroke="oklch(0.7 0.18 285 / 65%)"
           strokeWidth="1.4"
         />
         <text
-          x="28"
-          y="32"
+          x="26"
+          y="26"
           textAnchor="middle"
           fontFamily="Space Grotesk, sans-serif"
-          fontSize="22"
+          fontSize="20"
           fontWeight="700"
           fill="oklch(0.95 0.12 200)"
         >
@@ -403,31 +393,31 @@ export function DataModelingIllustration() {
       </g>
 
       {/* DB cylinder */}
-      <g transform="translate(184 38) rotate(-3)">
+      <g transform="translate(14 130) rotate(-3)">
         <ellipse
-          cx="28"
-          cy="7"
-          rx="26"
-          ry="6"
+          cx="26"
+          cy="6"
+          rx="24"
+          ry="5"
           fill="oklch(1 0 0 / 14%)"
           stroke="oklch(0.82 0.13 200 / 60%)"
           strokeWidth="1.4"
         />
         <path
-          d="M2 7 L2 38 Q2 44 28 44 Q54 44 54 38 L54 7"
+          d="M2 6 L2 34 Q2 39 26 39 Q50 39 50 34 L50 6"
           fill="oklch(1 0 0 / 10%)"
           stroke="oklch(0.82 0.13 200 / 60%)"
           strokeWidth="1.4"
         />
-        <ellipse cx="28" cy="17" rx="26" ry="6" fill="none" stroke="oklch(1 0 0 / 26%)" />
-        <ellipse cx="28" cy="27" rx="26" ry="6" fill="none" stroke="oklch(1 0 0 / 20%)" />
-        <circle cx="48" cy="3" r="2.8" fill="oklch(0.78 0.16 95)" />
+        <ellipse cx="26" cy="14" rx="24" ry="5" fill="none" stroke="oklch(1 0 0 / 26%)" />
+        <ellipse cx="26" cy="22" rx="24" ry="5" fill="none" stroke="oklch(1 0 0 / 20%)" />
+        <circle cx="44" cy="2" r="2.6" fill="oklch(0.78 0.16 95)" />
       </g>
 
-      {/* ── MIDDLE — TRANSFORMATION PIPELINE ───────────────────────── */}
-      {/* converging lines from the 3 sources into the clean node */}
+      {/* ── MIDDLE — TRANSFORMATION PIPELINE ──────────────────────── */}
+      {/* converging flow lines from the 3 sources into CLEAN node */}
       <path
-        d="M65 92 C 70 110, 100 120, 110 130"
+        d="M76 44 C 100 60, 120 80, 130 100"
         fill="none"
         stroke="url(#dm-stroke)"
         strokeWidth="1.6"
@@ -436,7 +426,7 @@ export function DataModelingIllustration() {
         opacity="0.85"
       />
       <path
-        d="M140 88 L 140 130"
+        d="M78 100 L 130 100"
         fill="none"
         stroke="url(#dm-stroke)"
         strokeWidth="1.6"
@@ -445,7 +435,7 @@ export function DataModelingIllustration() {
         opacity="0.85"
       />
       <path
-        d="M212 92 C 208 110, 180 120, 170 130"
+        d="M76 156 C 100 142, 120 120, 130 100"
         fill="none"
         stroke="url(#dm-stroke)"
         strokeWidth="1.6"
@@ -454,70 +444,99 @@ export function DataModelingIllustration() {
         opacity="0.85"
       />
 
-      {/* clean (funnel) node */}
-      <g transform="translate(96 130)">
+      {/* CLEAN funnel node */}
+      <g transform="translate(116 86)">
         <circle
           cx="14"
           cy="14"
-          r="20"
+          r="18"
           fill="oklch(1 0 0 / 8%)"
           stroke="oklch(0.82 0.13 200 / 70%)"
           strokeWidth="1.6"
         />
         <path
-          d="M2 6 H26 L19 16 V24 L9 24 V16 Z"
+          d="M3 6 H25 L18 16 V24 L10 24 V16 Z"
           fill="oklch(0.82 0.13 200 / 50%)"
           stroke="oklch(0.95 0.12 200 / 95%)"
           strokeWidth="1.4"
         />
       </g>
 
-      {/* shape (gear hex) node */}
-      <g transform="translate(150 130)">
+      {/* SHAPE hex/gear node */}
+      <g transform="translate(160 86)">
         <circle
           cx="14"
           cy="14"
-          r="20"
+          r="18"
           fill="oklch(1 0 0 / 8%)"
           stroke="oklch(0.7 0.18 285 / 70%)"
           strokeWidth="1.6"
         />
         <polygon
-          points="14,1 25,7 25,21 14,27 3,21 3,7"
+          points="14,2 24,7.5 24,20.5 14,26 4,20.5 4,7.5"
           fill="oklch(0.7 0.18 285 / 40%)"
           stroke="oklch(0.88 0.14 285)"
           strokeWidth="1.4"
         />
-        <circle cx="14" cy="14" r="3.6" fill="oklch(0.95 0.12 200)" />
+        <circle cx="14" cy="14" r="3.2" fill="oklch(0.95 0.12 200)" />
       </g>
+
+      {/* link CLEAN → SHAPE */}
+      <path
+        d="M150 100 L 168 100"
+        fill="none"
+        stroke="url(#dm-stroke)"
+        strokeWidth="1.6"
+        strokeDasharray="3 4"
+        strokeLinecap="round"
+      />
 
       {/* labels */}
       <text
-        x="110"
-        y="120"
+        x="130"
+        y="76"
         textAnchor="middle"
         fontFamily="Space Grotesk, sans-serif"
-        fontSize="8"
-        letterSpacing="2.5"
+        fontSize="7"
+        letterSpacing="2.2"
         fill="oklch(0.92 0.13 200 / 95%)"
       >
         CLEAN
       </text>
       <text
-        x="164"
-        y="120"
+        x="174"
+        y="76"
         textAnchor="middle"
         fontFamily="Space Grotesk, sans-serif"
-        fontSize="8"
-        letterSpacing="2.5"
+        fontSize="7"
+        letterSpacing="2.2"
         fill="oklch(0.85 0.16 285 / 95%)"
       >
         SHAPE
       </text>
 
-      {/* flow into star schema */}
+      {/* travelling particles along the flow */}
+      {[
+        { cx: 100, cy: 70, d: 0 },
+        { cx: 110, cy: 100, d: 0.3 },
+        { cx: 100, cy: 130, d: 0.6 },
+        { cx: 158, cy: 100, d: 0.9 },
+        { cx: 196, cy: 100, d: 1.2 },
+      ].map((p, i) => (
+        <circle
+          key={i}
+          cx={p.cx}
+          cy={p.cy}
+          r="2.4"
+          fill="oklch(0.95 0.12 200)"
+          className="animate-pulse-glow"
+          style={{ animationDelay: `${p.d}s` }}
+        />
+      ))}
+
+      {/* link SHAPE → STAR */}
       <path
-        d="M140 162 L 140 178"
+        d="M194 100 L 216 100"
         fill="none"
         stroke="url(#dm-stroke)"
         strokeWidth="2"
@@ -525,31 +544,13 @@ export function DataModelingIllustration() {
         strokeLinecap="round"
       />
 
-      {/* travelling particles */}
-      {[
-        { cx: 110, cy: 108, d: 0 },
-        { cx: 140, cy: 102, d: 0.3 },
-        { cx: 170, cy: 108, d: 0.6 },
-        { cx: 140, cy: 170, d: 0.9 },
-      ].map((p, i) => (
-        <circle
-          key={i}
-          cx={p.cx}
-          cy={p.cy}
-          r="2.8"
-          fill="oklch(0.95 0.12 200)"
-          className="animate-pulse-glow"
-          style={{ animationDelay: `${p.d}s` }}
-        />
-      ))}
-
-      {/* ── BOTTOM — STAR SCHEMA ───────────────────────────────────── */}
-      {/* connector lines */}
+      {/* ── RIGHT — STAR SCHEMA ───────────────────────────────────── */}
+      {/* connector lines fact ↔ dims */}
       {dims.map((d, i) => (
         <line
           key={i}
-          x1="140"
-          y1="230"
+          x1={factCx}
+          y1={factCy}
           x2={d.x}
           y2={d.y}
           stroke="oklch(0.82 0.13 200 / 65%)"
@@ -559,60 +560,61 @@ export function DataModelingIllustration() {
       ))}
 
       {/* fact table */}
-      <g transform="translate(112 204)">
+      <g transform={`translate(${factCx - 25} ${factCy - 23})`}>
         <rect
-          width="56"
-          height="52"
+          width="50"
+          height="46"
           rx="6"
           fill="oklch(1 0 0 / 14%)"
           stroke="oklch(0.82 0.13 200 / 95%)"
           strokeWidth="2"
         />
-        <rect x="0" y="0" width="56" height="14" rx="6" fill="oklch(0.82 0.13 200 / 60%)" />
+        <rect width="50" height="13" rx="6" fill="oklch(0.82 0.13 200 / 60%)" />
         <text
-          x="28"
-          y="11"
+          x="25"
+          y="10"
           textAnchor="middle"
           fontFamily="Space Grotesk, sans-serif"
-          fontSize="8"
+          fontSize="7"
           fontWeight="700"
-          letterSpacing="1.8"
+          letterSpacing="1.6"
           fill="oklch(0.98 0.02 240)"
         >
           FACT
         </text>
-        <line x1="6" x2="50" y1="22" y2="22" stroke="oklch(1 0 0 / 50%)" strokeWidth="1" />
-        <line x1="6" x2="50" y1="30" y2="30" stroke="oklch(1 0 0 / 40%)" strokeWidth="1" />
-        <line x1="6" x2="42" y1="38" y2="38" stroke="oklch(1 0 0 / 32%)" strokeWidth="1" />
-        <line x1="6" x2="46" y1="46" y2="46" stroke="oklch(1 0 0 / 28%)" strokeWidth="1" />
+        <line x1="5" x2="45" y1="20" y2="20" stroke="oklch(1 0 0 / 50%)" strokeWidth="1" />
+        <line x1="5" x2="45" y1="27" y2="27" stroke="oklch(1 0 0 / 40%)" strokeWidth="1" />
+        <line x1="5" x2="38" y1="34" y2="34" stroke="oklch(1 0 0 / 32%)" strokeWidth="1" />
+        <line x1="5" x2="42" y1="41" y2="41" stroke="oklch(1 0 0 / 28%)" strokeWidth="1" />
       </g>
 
       {/* dimension tables */}
       {dims.map((d, i) => (
-        <g key={i} transform={`translate(${d.x - 20} ${d.y - 16})`}>
+        <g key={i} transform={`translate(${d.x - 16} ${d.y - 12})`}>
           <rect
-            width="40"
-            height="32"
-            rx="5"
+            width="32"
+            height="24"
+            rx="4"
             fill="oklch(1 0 0 / 12%)"
             stroke="oklch(0.7 0.18 285 / 80%)"
-            strokeWidth="1.4"
+            strokeWidth="1.3"
           />
-          <rect x="0" y="0" width="40" height="9" rx="5" fill="oklch(0.7 0.18 285 / 60%)" />
-          <line x1="5" x2="35" y1="15" y2="15" stroke="oklch(1 0 0 / 38%)" strokeWidth="1" />
-          <line x1="5" x2="28" y1="22" y2="22" stroke="oklch(1 0 0 / 30%)" strokeWidth="1" />
-          <line x1="5" x2="32" y1="28" y2="28" stroke="oklch(1 0 0 / 24%)" strokeWidth="1" />
+          <rect width="32" height="7" rx="4" fill="oklch(0.7 0.18 285 / 60%)" />
+          <line x1="4" x2="28" y1="12" y2="12" stroke="oklch(1 0 0 / 38%)" strokeWidth="1" />
+          <line x1="4" x2="22" y1="17" y2="17" stroke="oklch(1 0 0 / 30%)" strokeWidth="1" />
+          <line x1="4" x2="25" y1="21" y2="21" stroke="oklch(1 0 0 / 24%)" strokeWidth="1" />
         </g>
       ))}
 
       {/* center pulse on fact */}
       <circle
-        cx="140"
-        cy="230"
-        r="4"
+        cx={factCx}
+        cy={factCy}
+        r="3.5"
         fill="oklch(0.95 0.12 200)"
         className="animate-pulse-glow"
       />
     </svg>
   );
 }
+

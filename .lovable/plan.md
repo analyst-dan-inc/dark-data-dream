@@ -1,50 +1,41 @@
-# Add SVG illustration — Data Preparation & Modeling
+# Fix: Data Modeling illustration appears tiny on desktop
 
-## Goal
-Give the **Data Preparation & Modeling** card its own visual identity, instead of reusing `ETLIllustration`. The new SVG should tell the story of the skill at a glance: **messy raw sources → cleaning/shaping pipeline → clean star-schema model**.
+## Root cause
 
-## Design concept — `DataModelingIllustration`
-Three stacked horizontal "lanes" inside the same 320×200 glass viewBox used by the other illustrations, so it sits visually consistent with `DataVizIllustration`, `ReportingIllustration`, and `ETLIllustration`.
+All other skill illustrations (`DataVizIllustration`, `ReportingIllustration`, `ETLIllustration`, `ProgrammingIllustration`) use **`viewBox="0 0 320 200"`** — a landscape ratio that matches the card's illustration area (a wide, short slot, ~`h-[14rem]` tall).
 
-1. **Left lane — Raw sources (chaos)**
-   - 3 small glass tiles representing heterogeneous inputs: a **CSV** sheet (grid of tiny cells), an **API** brace `{ }`, and a **DB** cylinder.
-   - Slightly tilted / uneven — visual hint of "messy".
-   - Tiny red/amber dots on a couple of cells = data quality issues.
+`DataModelingIllustration` was authored with **`viewBox="0 0 280 360"`** — a portrait ratio. With SVG's default `preserveAspectRatio="xMidYMid meet"`, the portrait viewBox gets scaled down to fit the container's *height*, then horizontally centered. Result: a narrow vertical sliver in the middle of a wide slot, which is exactly the "still too small" symptom — even after enlarging the container.
 
-2. **Middle lane — Transformation pipeline**
-   - A horizontal flow with two glass "gear/funnel" nodes connected by a dashed animated stroke (reusing the existing `animate-pulse-glow` / dashed-stroke language from `ETLIllustration`).
-   - Small floating particles travel along the line (static SVG, animation-delay staggered) to suggest rows being processed.
-   - Micro-labels: `clean` and `shape` in tiny uppercase tracking — matches the typographic voice used elsewhere (`Space Grotesk`, 10–12px).
+So yes, the SVG's internal aspect ratio is the problem, not the container, and not the size of the shapes inside it.
 
-3. **Right lane — Star-schema model (order)**
-   - A central **fact table** rectangle (glass + cyan stroke) surrounded by 4 smaller **dimension tables** connected by thin straight lines = classic star schema silhouette.
-   - Each table shows 2–3 horizontal lines as "columns".
-   - Subtle radial orb behind the star to make it feel like the "destination of clarity".
+## Fix
 
-## Visual language (consistent with existing illustrations)
-- Reuses the same `<GlassDefs id="dm" />` pattern (glass gradient, stroke gradient, glow gradient, orb radial, blur filter).
-- Same color tokens: `oklch(0.82 0.13 200)` cyan + `oklch(0.7 0.18 285)` violet accents, `oklch(1 0 0 / …)` whites for glass.
-- Same animations already in the codebase: `animate-pulse-glow`, `animate-float-slow`.
-- Same 320×200 viewBox + `h-full w-full` sizing so it slots into the card unchanged.
+Refactor `DataModelingIllustration` in `src/components/portfolio/SkillIllustrations.tsx` to a **landscape `viewBox="0 0 320 200"`**, identical to the other illustrations. The three-stage story is rotated 90° from the current top→bottom flow into a left→middle→right flow — matching the horizontal-flow language already established by `ETLIllustration`.
 
-## Files to change
+### New layout (landscape, 320 × 200)
 
-### 1. `src/components/portfolio/SkillIllustrations.tsx`
-- Add a new exported component `DataModelingIllustration()` implementing the three-lane composition above.
-- Keep all existing illustrations untouched.
+- **Left column — Raw Sources** (x ≈ 18–80)
+  - CSV sheet tile (slightly tilted), API `{ }` tile, DB cylinder tile stacked vertically with small offsets — keeps the "messy" feel.
+- **Middle column — Transformation pipeline** (x ≈ 110–200)
+  - "CLEAN" funnel node and "SHAPE" hex/gear node connected by an animated dashed `url(#dm-stroke)` path.
+  - Travelling particles using `animate-pulse-glow` with staggered `animationDelay` (same technique as `ETLIllustration`).
+  - Tiny `Space Grotesk` uppercase labels (`CLEAN`, `SHAPE`).
+- **Right column — Star schema** (x ≈ 230–305)
+  - Central FACT table rectangle with header bar + column lines (kept compact, ~50×46).
+  - 4 dimension tables placed N/S/E/W around the fact, connected by thin dashed lines — the classic star silhouette.
+  - Subtle radial orb behind the star (reusing `url(#dm-orb)` + `url(#dm-blur)`) as the "destination of clarity".
 
-### 2. `src/components/portfolio/skills-data.ts`
-- Update the import line to also bring in `DataModelingIllustration`.
-- For the `data-prep-modeling` skill entry, replace `Illustration: ETLIllustration` with `Illustration: DataModelingIllustration`.
-- Leave all other skill entries (Dashboarding, Reporting) untouched — they keep their current illustrations.
-- `ETLIllustration` stays exported so it remains available if needed later.
+### What stays the same
 
-## Out of scope
-- No changes to `SkillsCarousel`, the skill detail route, or the skill copy/highlights/tools.
-- No new assets, no PNG/JPG — pure inline SVG, matching the rest of the file.
-- No animation/CSS additions in `styles.css` — only reuse existing utility classes.
+- Same `<GlassDefs id="dm" />` block — no defs changes.
+- Same color tokens: cyan `oklch(0.82 0.13 200)`, violet `oklch(0.7 0.18 285)`, white glass.
+- Same animation classes: `animate-pulse-glow`, `animate-float-slow`.
+- Same `className="h-full w-full"` on the `<svg>`.
+- All other illustrations untouched.
+- `SkillsCarousel.tsx` untouched — the container is already correctly sized; only the SVG's internal viewBox needs to match.
 
 ## Acceptance check
-- The Data Preparation & Modeling card on `/` shows a distinct, on-brand glass SVG (raw → pipeline → star schema) instead of the current ETL nodes.
-- Dashboarding and Reporting cards look identical to before.
-- No TypeScript errors; build stays clean.
+
+- The Data Preparation & Modeling card's illustration fills the visual slot at the same scale as the Dashboarding, Reporting, and Programming cards across mobile and desktop (1304×900 viewport included).
+- The three stages (raw sources → pipeline → star schema) read clearly left-to-right.
+- No TypeScript errors; no changes to `styles.css` or carousel layout.
