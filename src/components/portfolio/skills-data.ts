@@ -132,36 +132,20 @@ export const SKILLS: Skill[] = [
     Illustration: ReportingIllustration,
   },
   {
-    id: "etl",
-    slug: "etl",
-    name: "ETL",
+    id: "data-prep-modeling",
+    slug: "data-preparation-modeling",
+    name: "Data Preparation & Modeling",
     description:
-      "Designing reliable extract-transform-load pipelines that consolidate sources, enforce quality and deliver clean, modeled data downstream.",
-    long: "Clean data is the foundation of every good decision. I design pipelines that extract from messy sources, transform with explicit business rules, and load into models built for analytics. Every step is observable: schema checks, freshness monitors, and tests that fail loudly before bad data reaches a dashboard.",
+      "Shaping raw, messy sources into clean, well-modeled datasets — consolidation, transformation and semantic models built for reliable analytics.",
+    long: "Clean, well-modeled data is the foundation of every good decision. I consolidate raw sources, enforce explicit business rules in transformations, and design semantic models built for analytics — star schemas, clear grain, documented measures. Every step is observable: schema checks, freshness monitors and tests that fail loudly before bad data reaches a dashboard.",
     highlights: [
-      "Source consolidation across APIs, files, DBs",
+      "Source consolidation across APIs, files & databases",
       "Explicit, testable transformation logic",
+      "Star-schema & semantic models tuned for BI",
       "Schema, freshness & quality monitoring",
-      "Modeled marts ready for BI consumption",
     ],
-    tools: ["Python", "SQL", "Airflow", "dbt", "NoSQL"],
+    tools: ["Python", "SQL", "Power BI", "DAX", "dbt"],
     Illustration: ETLIllustration,
-  },
-  {
-    id: "programming",
-    slug: "data-programming",
-    name: "Data Programming",
-    description:
-      "Hands-on with NoSQL, Python, Excel and Power BI — querying, modeling and scripting end-to-end analytical workflows.",
-    long: "I work fluently across the analyst's full toolkit — querying NoSQL stores, scripting transforms in Python, modeling in Power BI and prototyping fast in Excel. The point isn't the language; it's choosing the right tool for the job and stitching them into workflows that are reproducible end to end.",
-    highlights: [
-      "Python for transforms, analysis, automation",
-      "NoSQL querying & document modeling",
-      "Excel power-modeling & scenario tools",
-      "Power BI semantic models & DAX",
-    ],
-    tools: ["Python", "NoSQL", "Excel", "Power BI", "DAX"],
-    Illustration: ProgrammingIllustration,
   },
 ];
 
