@@ -319,22 +319,23 @@ export function DataModelingIllustration() {
   return (
     <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
       <GlassDefs id="dm" />
-      <circle cx="80" cy="160" r="60" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.7" />
-      {/* back panel — same fill strategy as reporting, but data-modeling content */}
-      <g transform="translate(60 20)">
+      <circle cx="78" cy="158" r="68" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.78" />
+
+      {/* back panel — enlarged to fill the header area more aggressively */}
+      <g transform="translate(44 12)">
         <rect
-          width="220"
-          height="130"
-          rx="12"
+          width="244"
+          height="144"
+          rx="14"
           fill="url(#dm-glass)"
           stroke="oklch(1 0 0 / 14%)"
           strokeWidth="1"
         />
         {/* header bar */}
-        <rect width="220" height="22" rx="12" fill="oklch(1 0 0 / 6%)" />
-        <circle cx="14" cy="11" r="3" fill="oklch(0.82 0.13 200)" />
-        <circle cx="26" cy="11" r="3" fill="oklch(0.7 0.18 285)" />
-        <rect x="40" y="7" width="80" height="8" rx="3" fill="oklch(1 0 0 / 18%)" />
+        <rect width="244" height="24" rx="14" fill="oklch(1 0 0 / 6%)" />
+        <circle cx="14" cy="12" r="3.2" fill="oklch(0.82 0.13 200)" />
+        <circle cx="27" cy="12" r="3.2" fill="oklch(0.7 0.18 285)" />
+        <rect x="42" y="8" width="88" height="8" rx="3" fill="oklch(1 0 0 / 18%)" />
 
         {/* process tiles */}
         {[
@@ -342,122 +343,123 @@ export function DataModelingIllustration() {
           { label: "CLEAN", accent: "oklch(0.82 0.13 200 / 75%)" },
           { label: "MODEL", accent: "oklch(0.7 0.18 285 / 75%)" },
         ].map((item, i) => (
-          <g key={item.label} transform={`translate(${12 + i * 68} 36)`}>
+          <g key={item.label} transform={`translate(${14 + i * 76} 40)`}>
             <rect
-              width="60"
-              height="36"
-              rx="6"
+              width="68"
+              height="40"
+              rx="7"
               fill="oklch(1 0 0 / 6%)"
               stroke="oklch(1 0 0 / 10%)"
             />
-            <rect x="8" y="8" width="18" height="5" rx="2" fill={item.accent} />
+            <rect x="9" y="8" width="20" height="5" rx="2" fill={item.accent} />
             <text
-              x="32"
-              y="13"
+              x="36"
+              y="14"
               textAnchor="middle"
               fontFamily="Space Grotesk, sans-serif"
-              fontSize="7"
+              fontSize="8"
               fontWeight="700"
               letterSpacing="1"
-              fill="oklch(1 0 0 / 74%)"
+              fill="oklch(1 0 0 / 78%)"
             >
               {item.label}
             </text>
-            <rect x="8" y="19" width="18" height="9" rx="2" fill="oklch(1 0 0 / 18%)" />
-            <rect x="30" y="19" width="22" height="9" rx="2" fill="oklch(1 0 0 / 24%)" />
+            <rect x="9" y="21" width="20" height="10" rx="2" fill="oklch(1 0 0 / 18%)" />
+            <rect x="33" y="21" width="26" height="10" rx="2" fill="oklch(1 0 0 / 24%)" />
           </g>
         ))}
 
-        {/* large schema band */}
-        <g transform="translate(12 84)">
-          <rect width="196" height="38" rx="6" fill="oklch(1 0 0 / 5%)" />
+        {/* schema band */}
+        <g transform="translate(14 92)">
+          <rect width="216" height="46" rx="7" fill="oklch(1 0 0 / 5%)" />
 
           {/* left source table */}
-          <g transform="translate(8 7)">
+          <g transform="translate(10 8)">
             <rect
-              width="34"
-              height="24"
+              width="38"
+              height="28"
               rx="4"
               fill="oklch(0.82 0.13 200 / 16%)"
               stroke="oklch(0.82 0.13 200 / 52%)"
               strokeWidth="1"
             />
-            <rect x="0" y="0" width="34" height="7" rx="4" fill="oklch(0.82 0.13 200 / 42%)" />
-            <line x1="5" x2="29" y1="12" y2="12" stroke="oklch(1 0 0 / 34%)" strokeWidth="1" />
-            <line x1="5" x2="24" y1="17" y2="17" stroke="oklch(1 0 0 / 26%)" strokeWidth="1" />
+            <rect x="0" y="0" width="38" height="8" rx="4" fill="oklch(0.82 0.13 200 / 42%)" />
+            <line x1="6" x2="32" y1="14" y2="14" stroke="oklch(1 0 0 / 34%)" strokeWidth="1" />
+            <line x1="6" x2="26" y1="20" y2="20" stroke="oklch(1 0 0 / 26%)" strokeWidth="1" />
           </g>
 
           {/* transformation flow */}
           <path
-            d="M42 19 C 64 19, 68 10, 88 10 C 106 10, 108 19, 124 19"
+            d="M48 22 C 72 22, 78 11, 102 11 C 124 11, 128 22, 146 22"
             fill="none"
             stroke="url(#dm-stroke)"
-            strokeWidth="2"
+            strokeWidth="2.2"
             strokeDasharray="3 4"
             strokeLinecap="round"
           />
-          <circle cx="66" cy="19" r="2.5" fill="oklch(0.95 0.12 200)" className="animate-pulse-glow" />
-          <circle cx="100" cy="10" r="2.5" fill="oklch(0.9 0.14 285)" className="animate-pulse-glow" style={{ animationDelay: "0.35s" }} />
+          <circle cx="76" cy="22" r="2.8" fill="oklch(0.95 0.12 200)" className="animate-pulse-glow" />
+          <circle cx="114" cy="11" r="2.8" fill="oklch(0.9 0.14 285)" className="animate-pulse-glow" style={{ animationDelay: "0.35s" }} />
 
           {/* center fact/model table */}
-          <g transform="translate(88 3)">
+          <g transform="translate(102 5)">
             <rect
-              width="46"
-              height="32"
+              width="52"
+              height="36"
               rx="5"
               fill="oklch(0.7 0.18 285 / 18%)"
               stroke="oklch(0.7 0.18 285 / 58%)"
               strokeWidth="1"
             />
-            <rect x="0" y="0" width="46" height="8" rx="5" fill="oklch(0.7 0.18 285 / 46%)" />
-            <line x1="6" x2="40" y1="14" y2="14" stroke="oklch(1 0 0 / 34%)" strokeWidth="1" />
-            <line x1="6" x2="36" y1="20" y2="20" stroke="oklch(1 0 0 / 26%)" strokeWidth="1" />
-            <line x1="6" x2="32" y1="26" y2="26" stroke="oklch(1 0 0 / 20%)" strokeWidth="1" />
+            <rect x="0" y="0" width="52" height="9" rx="5" fill="oklch(0.7 0.18 285 / 46%)" />
+            <line x1="7" x2="45" y1="16" y2="16" stroke="oklch(1 0 0 / 34%)" strokeWidth="1" />
+            <line x1="7" x2="40" y1="23" y2="23" stroke="oklch(1 0 0 / 26%)" strokeWidth="1" />
+            <line x1="7" x2="35" y1="30" y2="30" stroke="oklch(1 0 0 / 20%)" strokeWidth="1" />
           </g>
 
           {/* right dimension table */}
-          <g transform="translate(154 7)">
+          <g transform="translate(168 8)">
             <rect
-              width="34"
-              height="24"
+              width="38"
+              height="28"
               rx="4"
               fill="oklch(0.82 0.13 200 / 16%)"
               stroke="oklch(0.82 0.13 200 / 52%)"
               strokeWidth="1"
             />
-            <rect x="0" y="0" width="34" height="7" rx="4" fill="oklch(0.82 0.13 200 / 42%)" />
-            <line x1="5" x2="29" y1="12" y2="12" stroke="oklch(1 0 0 / 34%)" strokeWidth="1" />
-            <line x1="5" x2="24" y1="17" y2="17" stroke="oklch(1 0 0 / 26%)" strokeWidth="1" />
+            <rect x="0" y="0" width="38" height="8" rx="4" fill="oklch(0.82 0.13 200 / 42%)" />
+            <line x1="6" x2="32" y1="14" y2="14" stroke="oklch(1 0 0 / 34%)" strokeWidth="1" />
+            <line x1="6" x2="26" y1="20" y2="20" stroke="oklch(1 0 0 / 26%)" strokeWidth="1" />
           </g>
         </g>
       </g>
 
       {/* front floating tile */}
-      <g transform="translate(28 110)" className="animate-float-slow">
+      <g transform="translate(16 102)" className="animate-float-slow">
         <rect
-          width="92"
-          height="72"
-          rx="10"
+          width="108"
+          height="82"
+          rx="11"
           fill="url(#dm-glass)"
           stroke="oklch(0.82 0.13 200 / 45%)"
           strokeWidth="1"
         />
-        <rect x="10" y="12" width="40" height="6" rx="2" fill="oklch(1 0 0 / 30%)" />
+        <rect x="12" y="13" width="46" height="6" rx="2" fill="oklch(1 0 0 / 30%)" />
         <text
-          x="10"
-          y="44"
+          x="12"
+          y="49"
           fontFamily="Space Grotesk, sans-serif"
-          fontSize="18"
+          fontSize="22"
           fontWeight="700"
           fill="oklch(0.92 0.12 200)"
         >
           SQL
         </text>
-        <rect x="10" y="56" width="60" height="4" rx="2" fill="oklch(1 0 0 / 18%)" />
+        <rect x="12" y="63" width="68" height="5" rx="2.5" fill="oklch(1 0 0 / 18%)" />
       </g>
     </svg>
   );
 }
+
 
 
 
