@@ -316,146 +316,125 @@ export function ProgrammingIllustration() {
 }
 
 export function DataModelingIllustration() {
+  const cols = ["A", "B", "C", "D", "E"];
+  const rows = [1, 2, 3, 4, 5, 6];
+  const colW = 56;
+  const rowH = 22;
+  const gridX = 28;
+  const gridY = 38;
+
   return (
     <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
       <GlassDefs id="dm" />
-      <circle cx="78" cy="158" r="68" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.78" />
+      <circle cx="240" cy="60" r="60" fill="url(#dm-orb)" filter="url(#dm-blur)" opacity="0.6" />
 
-      {/* back panel — enlarged to fill the header area more aggressively */}
-      <g transform="translate(44 12)">
-        <rect
-          width="244"
-          height="144"
-          rx="14"
-          fill="url(#dm-glass)"
-          stroke="oklch(1 0 0 / 14%)"
-          strokeWidth="1"
-        />
-        {/* header bar */}
-        <rect width="244" height="24" rx="14" fill="oklch(1 0 0 / 6%)" />
-        <circle cx="14" cy="12" r="3.2" fill="oklch(0.82 0.13 200)" />
-        <circle cx="27" cy="12" r="3.2" fill="oklch(0.7 0.18 285)" />
-        <rect x="42" y="8" width="88" height="8" rx="3" fill="oklch(1 0 0 / 18%)" />
+      {/* sheet panel */}
+      <rect
+        x="10"
+        y="12"
+        width="300"
+        height="176"
+        rx="14"
+        fill="url(#dm-glass)"
+        stroke="oklch(1 0 0 / 14%)"
+        strokeWidth="1"
+      />
 
-        {/* process tiles */}
-        {[
-          { label: "RAW", accent: "oklch(0.78 0.16 95 / 75%)" },
-          { label: "CLEAN", accent: "oklch(0.82 0.13 200 / 75%)" },
-          { label: "MODEL", accent: "oklch(0.7 0.18 285 / 75%)" },
-        ].map((item, i) => (
-          <g key={item.label} transform={`translate(${14 + i * 76} 40)`}>
-            <rect
-              width="68"
-              height="40"
-              rx="7"
-              fill="oklch(1 0 0 / 6%)"
-              stroke="oklch(1 0 0 / 10%)"
-            />
-            <rect x="9" y="8" width="20" height="5" rx="2" fill={item.accent} />
-            <text
-              x="36"
-              y="14"
-              textAnchor="middle"
-              fontFamily="Space Grotesk, sans-serif"
-              fontSize="8"
-              fontWeight="700"
-              letterSpacing="1"
-              fill="oklch(1 0 0 / 78%)"
-            >
-              {item.label}
-            </text>
-            <rect x="9" y="21" width="20" height="10" rx="2" fill="oklch(1 0 0 / 18%)" />
-            <rect x="33" y="21" width="26" height="10" rx="2" fill="oklch(1 0 0 / 24%)" />
-          </g>
-        ))}
+      {/* corner cell */}
+      <rect x="10" y="12" width={gridX - 10} height={gridY - 12} fill="oklch(1 0 0 / 6%)" />
 
-        {/* schema band */}
-        <g transform="translate(14 92)">
-          <rect width="216" height="46" rx="7" fill="oklch(1 0 0 / 5%)" />
-
-          {/* left source table */}
-          <g transform="translate(10 8)">
-            <rect
-              width="38"
-              height="28"
-              rx="4"
-              fill="oklch(0.82 0.13 200 / 16%)"
-              stroke="oklch(0.82 0.13 200 / 52%)"
-              strokeWidth="1"
-            />
-            <rect x="0" y="0" width="38" height="8" rx="4" fill="oklch(0.82 0.13 200 / 42%)" />
-            <line x1="6" x2="32" y1="14" y2="14" stroke="oklch(1 0 0 / 34%)" strokeWidth="1" />
-            <line x1="6" x2="26" y1="20" y2="20" stroke="oklch(1 0 0 / 26%)" strokeWidth="1" />
-          </g>
-
-          {/* transformation flow */}
-          <path
-            d="M48 22 C 72 22, 78 11, 102 11 C 124 11, 128 22, 146 22"
-            fill="none"
-            stroke="url(#dm-stroke)"
-            strokeWidth="2.2"
-            strokeDasharray="3 4"
-            strokeLinecap="round"
-          />
-          <circle cx="76" cy="22" r="2.8" fill="oklch(0.95 0.12 200)" className="animate-pulse-glow" />
-          <circle cx="114" cy="11" r="2.8" fill="oklch(0.9 0.14 285)" className="animate-pulse-glow" style={{ animationDelay: "0.35s" }} />
-
-          {/* center fact/model table */}
-          <g transform="translate(102 5)">
-            <rect
-              width="52"
-              height="36"
-              rx="5"
-              fill="oklch(0.7 0.18 285 / 18%)"
-              stroke="oklch(0.7 0.18 285 / 58%)"
-              strokeWidth="1"
-            />
-            <rect x="0" y="0" width="52" height="9" rx="5" fill="oklch(0.7 0.18 285 / 46%)" />
-            <line x1="7" x2="45" y1="16" y2="16" stroke="oklch(1 0 0 / 34%)" strokeWidth="1" />
-            <line x1="7" x2="40" y1="23" y2="23" stroke="oklch(1 0 0 / 26%)" strokeWidth="1" />
-            <line x1="7" x2="35" y1="30" y2="30" stroke="oklch(1 0 0 / 20%)" strokeWidth="1" />
-          </g>
-
-          {/* right dimension table */}
-          <g transform="translate(168 8)">
-            <rect
-              width="38"
-              height="28"
-              rx="4"
-              fill="oklch(0.82 0.13 200 / 16%)"
-              stroke="oklch(0.82 0.13 200 / 52%)"
-              strokeWidth="1"
-            />
-            <rect x="0" y="0" width="38" height="8" rx="4" fill="oklch(0.82 0.13 200 / 42%)" />
-            <line x1="6" x2="32" y1="14" y2="14" stroke="oklch(1 0 0 / 34%)" strokeWidth="1" />
-            <line x1="6" x2="26" y1="20" y2="20" stroke="oklch(1 0 0 / 26%)" strokeWidth="1" />
-          </g>
-        </g>
-      </g>
-
-      {/* front floating tile */}
-      <g transform="translate(16 102)" className="animate-float-slow">
-        <rect
-          width="108"
-          height="82"
-          rx="11"
-          fill="url(#dm-glass)"
-          stroke="oklch(0.82 0.13 200 / 45%)"
-          strokeWidth="1"
-        />
-        <rect x="12" y="13" width="46" height="6" rx="2" fill="oklch(1 0 0 / 30%)" />
+      {/* column header strip */}
+      <rect x={gridX} y="12" width={300 - (gridX - 10)} height={gridY - 12} fill="oklch(1 0 0 / 7%)" />
+      {cols.map((c, i) => (
         <text
-          x="12"
-          y="49"
+          key={c}
+          x={gridX + i * colW + colW / 2}
+          y={gridY - 8}
+          textAnchor="middle"
           fontFamily="Space Grotesk, sans-serif"
-          fontSize="22"
+          fontSize="10"
           fontWeight="700"
-          fill="oklch(0.92 0.12 200)"
+          fill="oklch(1 0 0 / 70%)"
         >
-          SQL
+          {c}
         </text>
-        <rect x="12" y="63" width="68" height="5" rx="2.5" fill="oklch(1 0 0 / 18%)" />
-      </g>
+      ))}
+
+      {/* row index strip */}
+      <rect x="10" y={gridY} width={gridX - 10} height={rows.length * rowH} fill="oklch(1 0 0 / 6%)" />
+      {rows.map((r, i) => (
+        <text
+          key={r}
+          x={(10 + gridX) / 2}
+          y={gridY + i * rowH + rowH / 2 + 3}
+          textAnchor="middle"
+          fontFamily="Space Grotesk, sans-serif"
+          fontSize="9"
+          fontWeight="600"
+          fill="oklch(1 0 0 / 60%)"
+        >
+          {r}
+        </text>
+      ))}
+
+      {/* selected cell highlight */}
+      <rect
+        x={gridX + 2 * colW}
+        y={gridY + 2 * rowH}
+        width={colW}
+        height={rowH}
+        fill="oklch(0.82 0.13 200 / 22%)"
+        stroke="oklch(0.82 0.13 200 / 90%)"
+        strokeWidth="1.5"
+      />
+
+      {/* horizontal grid lines */}
+      {rows.map((_, i) => (
+        <line
+          key={`h-${i}`}
+          x1="10"
+          x2="310"
+          y1={gridY + (i + 1) * rowH}
+          y2={gridY + (i + 1) * rowH}
+          stroke="oklch(1 0 0 / 10%)"
+          strokeWidth="1"
+        />
+      ))}
+      <line x1="10" x2="310" y1={gridY} y2={gridY} stroke="oklch(1 0 0 / 16%)" strokeWidth="1" />
+
+      {/* vertical grid lines */}
+      {cols.map((_, i) => (
+        <line
+          key={`v-${i}`}
+          x1={gridX + (i + 1) * colW}
+          x2={gridX + (i + 1) * colW}
+          y1="12"
+          y2={gridY + rows.length * rowH}
+          stroke="oklch(1 0 0 / 10%)"
+          strokeWidth="1"
+        />
+      ))}
+      <line x1={gridX} x2={gridX} y1="12" y2={gridY + rows.length * rowH} stroke="oklch(1 0 0 / 16%)" strokeWidth="1" />
+
+      {/* cell content bars */}
+      {rows.map((_, ri) =>
+        cols.map((_, ci) => {
+          const widths = [34, 22, 30, 26, 18];
+          const w = widths[(ri + ci) % widths.length];
+          const isSel = ri === 2 && ci === 2;
+          return (
+            <rect
+              key={`c-${ri}-${ci}`}
+              x={gridX + ci * colW + 8}
+              y={gridY + ri * rowH + rowH / 2 - 2}
+              width={w}
+              height="4"
+              rx="2"
+              fill={isSel ? "oklch(0.95 0.12 200 / 95%)" : "oklch(1 0 0 / 26%)"}
+            />
+          );
+        }),
+      )}
     </svg>
   );
 }
