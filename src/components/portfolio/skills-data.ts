@@ -5,6 +5,7 @@ import {
   ProgrammingIllustration,
   ReportingIllustration,
 } from "./SkillIllustrations";
+import dataVizImage from "@/assets/skills/dataviz.png";
 
 export type Skill = {
   id: string;
@@ -15,6 +16,8 @@ export type Skill = {
   highlights: string[];
   tools: string[];
   Illustration: () => ReactElement;
+  image?: string;
+  imageAlt?: string;
 };
 
 export const SKILLS: Skill[] = [
@@ -33,6 +36,8 @@ export const SKILLS: Skill[] = [
     ],
     tools: ["Power BI", "Tableau", "Plotly", "D3", "Figma"],
     Illustration: DataVizIllustration,
+    image: dataVizImage,
+    imageAlt: "Olist e-commerce executive dashboard with KPIs, Brazil sales map, customer state trends and order delivery table",
   },
   {
     id: "reporting",
