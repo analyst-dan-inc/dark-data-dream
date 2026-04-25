@@ -395,46 +395,46 @@ export function DataModelingIllustration() {
       {/* ── MIDDLE LANE — transformation pipeline ────────────────────── */}
       {/* dashed flow line raw → model */}
       <path
-        d="M70 100 C 100 80, 140 120, 180 100"
+        d="M70 108 C 100 86, 150 130, 196 108"
         fill="none"
         stroke="url(#dm-stroke)"
-        strokeWidth="1.6"
-        strokeDasharray="3 5"
+        strokeWidth="2"
+        strokeDasharray="4 6"
         strokeLinecap="round"
       />
 
       {/* funnel/clean node */}
-      <g transform="translate(96 86)">
+      <g transform="translate(94 92)">
         <path
-          d="M0 0 H28 L20 14 V24 L8 24 V14 Z"
+          d="M0 0 H32 L22 16 V28 L10 28 V16 Z"
           fill="url(#dm-glass)"
-          stroke="oklch(0.82 0.13 200 / 60%)"
-          strokeWidth="1.2"
+          stroke="oklch(0.82 0.13 200 / 90%)"
+          strokeWidth="1.4"
         />
       </g>
 
       {/* shape node (gear-ish hex) */}
-      <g transform="translate(140 86)">
+      <g transform="translate(140 92)">
         <polygon
-          points="14,0 26,7 26,21 14,28 2,21 2,7"
+          points="16,0 30,8 30,24 16,32 2,24 2,8"
           fill="url(#dm-glass)"
-          stroke="oklch(0.7 0.18 285 / 65%)"
-          strokeWidth="1.2"
+          stroke="oklch(0.7 0.18 285 / 90%)"
+          strokeWidth="1.4"
         />
-        <circle cx="14" cy="14" r="4" fill="oklch(0.92 0.12 200)" opacity="0.85" />
+        <circle cx="16" cy="16" r="5" fill="oklch(0.92 0.12 200)" opacity="0.95" />
       </g>
 
       {/* travelling particles along the pipeline */}
       {[
-        { cx: 86, cy: 96 },
-        { cx: 128, cy: 102 },
-        { cx: 168, cy: 98 },
+        { cx: 84, cy: 102 },
+        { cx: 130, cy: 112 },
+        { cx: 178, cy: 104 },
       ].map((p, i) => (
         <circle
           key={i}
           cx={p.cx}
           cy={p.cy}
-          r="2.2"
+          r="2.6"
           fill="oklch(0.92 0.12 200)"
           className="animate-pulse-glow"
           style={{ animationDelay: `${i * 0.45}s` }}
@@ -444,23 +444,25 @@ export function DataModelingIllustration() {
       {/* lane labels */}
       <text
         x="110"
-        y="78"
+        y="84"
         textAnchor="middle"
         fontFamily="Space Grotesk, sans-serif"
-        fontSize="7"
-        letterSpacing="2"
-        fill="oklch(0.82 0.13 200 / 80%)"
+        fontSize="8"
+        fontWeight="600"
+        letterSpacing="2.5"
+        fill="oklch(0.82 0.13 200 / 95%)"
       >
         CLEAN
       </text>
       <text
-        x="154"
-        y="78"
+        x="156"
+        y="84"
         textAnchor="middle"
         fontFamily="Space Grotesk, sans-serif"
-        fontSize="7"
-        letterSpacing="2"
-        fill="oklch(0.7 0.18 285 / 80%)"
+        fontSize="8"
+        fontWeight="600"
+        letterSpacing="2.5"
+        fill="oklch(0.7 0.18 285 / 95%)"
       >
         SHAPE
       </text>
@@ -470,56 +472,56 @@ export function DataModelingIllustration() {
       {dims.map((d, i) => (
         <line
           key={i}
-          x1="250"
-          y1="100"
+          x1="252"
+          y1="108"
           x2={d.x}
           y2={d.y}
-          stroke="oklch(0.82 0.13 200 / 45%)"
-          strokeWidth="1"
+          stroke="oklch(0.82 0.13 200 / 70%)"
+          strokeWidth="1.2"
         />
       ))}
 
       {/* fact table (center) */}
-      <g transform="translate(232 84)">
+      <g transform="translate(232 90)">
         <rect
-          width="36"
-          height="32"
+          width="40"
+          height="36"
           rx="4"
           fill="url(#dm-glass)"
-          stroke="oklch(0.82 0.13 200 / 75%)"
-          strokeWidth="1.4"
+          stroke="oklch(0.82 0.13 200 / 95%)"
+          strokeWidth="1.6"
         />
-        <rect x="0" y="0" width="36" height="8" rx="4" fill="oklch(0.82 0.13 200 / 30%)" />
-        <line x1="4" x2="32" y1="14" y2="14" stroke="oklch(1 0 0 / 30%)" strokeWidth="1" />
-        <line x1="4" x2="32" y1="20" y2="20" stroke="oklch(1 0 0 / 22%)" strokeWidth="1" />
-        <line x1="4" x2="28" y1="26" y2="26" stroke="oklch(1 0 0 / 22%)" strokeWidth="1" />
+        <rect x="0" y="0" width="40" height="9" rx="4" fill="oklch(0.82 0.13 200 / 50%)" />
+        <line x1="4" x2="36" y1="16" y2="16" stroke="oklch(1 0 0 / 45%)" strokeWidth="1" />
+        <line x1="4" x2="36" y1="22" y2="22" stroke="oklch(1 0 0 / 35%)" strokeWidth="1" />
+        <line x1="4" x2="30" y1="28" y2="28" stroke="oklch(1 0 0 / 35%)" strokeWidth="1" />
       </g>
 
       {/* dimension tables */}
       {dims.map((d, i) => (
-        <g key={i} transform={`translate(${d.x - 14} ${d.y - 12})`}>
+        <g key={i} transform={`translate(${d.x - 16} ${d.y - 13})`}>
           <rect
-            width="28"
-            height="24"
+            width="32"
+            height="26"
             rx="3"
             fill="url(#dm-glass)"
-            stroke="oklch(1 0 0 / 22%)"
-            strokeWidth="1"
+            stroke="oklch(1 0 0 / 45%)"
+            strokeWidth="1.1"
           />
-          <rect width="28" height="6" rx="3" fill="oklch(0.7 0.18 285 / 35%)" />
-          <line x1="3" x2="25" y1="11" y2="11" stroke="oklch(1 0 0 / 22%)" strokeWidth="1" />
-          <line x1="3" x2="20" y1="16" y2="16" stroke="oklch(1 0 0 / 22%)" strokeWidth="1" />
-          <line x1="3" x2="22" y1="21" y2="21" stroke="oklch(1 0 0 / 18%)" strokeWidth="1" />
+          <rect width="32" height="7" rx="3" fill="oklch(0.7 0.18 285 / 55%)" />
+          <line x1="3" x2="29" y1="12" y2="12" stroke="oklch(1 0 0 / 38%)" strokeWidth="1" />
+          <line x1="3" x2="22" y1="17" y2="17" stroke="oklch(1 0 0 / 32%)" strokeWidth="1" />
+          <line x1="3" x2="25" y1="22" y2="22" stroke="oklch(1 0 0 / 28%)" strokeWidth="1" />
         </g>
       ))}
 
       {/* center pulse on fact */}
       <circle
-        cx="250"
-        cy="100"
-        r="3"
+        cx="252"
+        cy="108"
+        r="3.5"
         fill="oklch(0.92 0.12 200)"
-        opacity="0.85"
+        opacity="0.95"
         className="animate-pulse-glow"
       />
     </svg>
