@@ -9,13 +9,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Dark, futuristic portfolio of a data analyst — Data Viz, Reporting, ETL and Data Programming, presented as an interactive glassmorphic carousel.",
+          "Dark, futuristic portfolio of a data analyst — Dashboarding, Reporting and Data Preparation & Modeling, presented as an interactive glassmorphic carousel.",
       },
       { property: "og:title", content: "Data Analyst Portfolio — Skills Showcase" },
       {
         property: "og:description",
         content:
-          "Interactive showcase of a data analyst's core skills: Data Visualization, Reporting, ETL, and Data Programming.",
+          "Interactive showcase of a data analyst's core skills: Dashboarding, Reporting, and Data Preparation & Modeling.",
       },
       { property: "og:type", content: "website" },
     ],
